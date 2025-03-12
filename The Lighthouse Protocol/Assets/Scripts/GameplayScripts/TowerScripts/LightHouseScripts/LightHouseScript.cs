@@ -41,7 +41,7 @@ public class LightHouseScript : MonoBehaviour
         if (Dome != null)
         {
             Dome.transform.localScale = Vector3.one * newRaidus * 2;
-            Debug.Log("Dome size updated ");
+           
         }
         else
         {
