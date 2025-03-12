@@ -32,7 +32,7 @@ public class LightHouseScript : MonoBehaviour
 
     private void UpdateDomeSize() //Handles updating the dome size for the light house
     {
-        float normalizedEnergy = currentEnergy / maxEnergy;
+        float normalizedEnergy = Mathf.Clamp(currentEnergy / maxEnergy, 0f, 1f);
         float newRaidus = Mathf.Lerp(domeRadius, maxDomeRadius, normalizedEnergy);
 
         Debug.Log("Udpating the dome size: " + newRaidus); 
@@ -42,6 +42,10 @@ public class LightHouseScript : MonoBehaviour
         {
             Dome.transform.localScale = Vector3.one * newRaidus * 2;
             Debug.Log("Dome size updated ");
+        }
+        else
+        {
+            Debug.Log("Dome visual is not assigned in the inspector");
         }
 
         

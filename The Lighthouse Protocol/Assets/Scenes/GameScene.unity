@@ -1065,9 +1065,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864693153}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1058, y: 108.29574, z: 11}
-  m_LocalScale: {x: 216.59172, y: 216.59172, z: 216.59172}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1058, y: 108.29581, z: 11}
+  m_LocalScale: {x: 216.59169, y: 216.5917, z: 216.59169}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1564,10 +1564,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb33de674f572c549bbe0b436bb99fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnergy: 200
-  currentEnergy: 200
-  domeRadius: 3000
-  maxDomeRadius: 3000
+  maxEnergy: 2000
+  currentEnergy: 2000
+  domeRadius: 2690
+  maxDomeRadius: 2690
   Dome: {fileID: 864693153}
 --- !u!65 &1250316993
 BoxCollider:
