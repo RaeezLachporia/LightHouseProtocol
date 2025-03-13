@@ -4,13 +4,13 @@ public class CaveGenerator : MonoBehaviour
 {
     public int width = 50;
     public int height = 50;
+    public int depth = 5; // Number of levels on the Y-axis
     public float fillPercent = 0.45f;
     public int smoothingIterations = 5;
     public string seed;
     public bool useRandomSeed = true;
 
-    private int[,] map;
-    private Vector3 entrancePosition = new Vector3(0, 0, 50); // Fixed entrance
+    private int[,,] map;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class CaveGenerator : MonoBehaviour
 
     void GenerateCave()
     {
-        map = new int[width, height];
+        map = new int[width, depth, height];
         RandomFillMap();
 
         for (int i = 0; i < smoothingIterations; i++)
@@ -42,15 +42,18 @@ public class CaveGenerator : MonoBehaviour
 
         for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < depth; y++)
             {
-                if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
+                for (int z = 0; z < height; z++)
                 {
-                    map[x, y] = 1; // Border walls
-                }
-                else
-                {
-                    map[x, y] = (rand.NextDouble() < fillPercent) ? 1 : 0;
+                    if (x == 0 || x == width - 1 || z == 0 || z == height - 1 || y == 0 || y == depth - 1)
+                    {
+                        map[x, y, z] = 1; // Border walls
+                    }
+                    else
+                    {
+                        map[x, y, z] = (rand.NextDouble() < fillPercent) ? 1 : 0;
+                    }
                 }
             }
         }
@@ -58,14 +61,17 @@ public class CaveGenerator : MonoBehaviour
 
     void SmoothMap()
     {
-        int[,] newMap = new int[width, height];
+        int[,,] newMap = new int[width, depth, height];
 
         for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < depth; y++)
             {
-                int neighborWalls = GetSurroundingWallCount(x, y);
-                newMap[x, y] = (neighborWalls > 4) ? 1 : (neighborWalls < 4) ? 0 : map[x, y];
+                for (int z = 0; z < height; z++)
+                {
+                    int neighborWalls = GetSurroundingWallCount(x, y, z);
+                    newMap[x, y, z] = (neighborWalls > 13) ? 1 : (neighborWalls < 13) ? 0 : map[x, y, z];
+                }
             }
         }
 
@@ -74,47 +80,54 @@ public class CaveGenerator : MonoBehaviour
 
     void EnsureEntrance()
     {
-        // Convert world space (14,0,50) to grid space
-        int entranceX = 14;  // Directly using 14 since tileSize is unknown
-        int entranceY = height - 1; // Ensure it's at the top edge
+        int entranceX = 14;
+        int entranceY = depth / 2; // Middle level for easy access
+        int entranceZ = height - 1;
 
-        Debug.Log($"Ensuring entrance at: ({entranceX}, {entranceY}) in grid space");
+        Debug.Log($"Ensuring entrance at: ({entranceX}, {entranceY}, {entranceZ}) in grid space");
 
-        // Carve out the entrance area
-        for (int dy = 0; dy < 5; dy++) // Depth into the cave
+        for (int dy = -1; dy <= 1; dy++)
         {
-            for (int dx = -2; dx <= 2; dx++) // Width of entrance
+            for (int dx = -2; dx <= 2; dx++)
             {
-                int x = entranceX + dx;
-                int y = entranceY - dy;
-
-                // Ensure within bounds before modifying
-                if (x >= 0 && x < width && y >= 0 && y < height)
+                for (int dz = 0; dz < 5; dz++)
                 {
-                    map[x, y] = 0; // Set tile to empty (carving entrance)
+                    int x = entranceX + dx;
+                    int y = entranceY + dy;
+                    int z = entranceZ - dz;
+
+                    if (x >= 0 && x < width && y >= 0 && y < depth && z >= 0 && z < height)
+                    {
+                        map[x, y, z] = 0;
+                    }
                 }
             }
         }
-
-        Debug.Log($"Entrance successfully created at grid: ({entranceX}, {entranceY})");
     }
 
-    int GetSurroundingWallCount(int x, int y)
+    int GetSurroundingWallCount(int x, int y, int z)
     {
         int count = 0;
         for (int dx = -1; dx <= 1; dx++)
         {
             for (int dy = -1; dy <= 1; dy++)
             {
-                int nx = x + dx;
-                int ny = y + dy;
-                if (nx >= 0 && nx < width && ny >= 0 && ny < height)
+                for (int dz = -1; dz <= 1; dz++)
                 {
-                    count += map[nx, ny];
-                }
-                else
-                {
-                    count++; // Treat out-of-bounds as walls
+                    if (dx == 0 && dy == 0 && dz == 0) continue;
+
+                    int nx = x + dx;
+                    int ny = y + dy;
+                    int nz = z + dz;
+
+                    if (nx >= 0 && nx < width && ny >= 0 && ny < depth && nz >= 0 && nz < height)
+                    {
+                        count += map[nx, ny, nz];
+                    }
+                    else
+                    {
+                        count++; // Out of bounds treated as wall
+                    }
                 }
             }
         }
@@ -123,18 +136,21 @@ public class CaveGenerator : MonoBehaviour
 
     void DrawCave()
     {
-        Vector3 offset = new Vector3(-width / 2, 0, 50); // Offset to align entrance at border
+        Vector3 offset = new Vector3(-width / 2, 0, -height / 2);
 
         for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < depth; y++)
             {
-                Vector3 pos = new Vector3(x, 0, y) + offset;
-                if (map[x, y] == 1)
+                for (int z = 0; z < height; z++)
                 {
-                    GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    wall.transform.position = pos;
-                    wall.transform.localScale = new Vector3(1, 2, 1);
+                    Vector3 pos = new Vector3(x, y, z) + offset;
+                    if (map[x, y, z] == 1)
+                    {
+                        GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                        wall.transform.position = pos;
+                        wall.transform.localScale = Vector3.one;
+                    }
                 }
             }
         }
