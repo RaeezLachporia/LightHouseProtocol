@@ -1438,7 +1438,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1003116790}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2013014125}
+        m_TargetAssemblyTypeName: TowerPlacementScripts, Assembly-CSharp
+        m_MethodName: SelectTOwer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1003116790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1683,7 +1695,7 @@ GameObject:
   - component: {fileID: 1250316993}
   - component: {fileID: 1250316992}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: LightHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2862,6 +2874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerPrefabs:
   - {fileID: 138496781878157402, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
+  - {fileID: 3278999281667878958, guid: 48e6f57159c2b814e8652cf9f7716d0b, type: 3}
   placementLayer:
     serializedVersion: 2
     m_Bits: 8
