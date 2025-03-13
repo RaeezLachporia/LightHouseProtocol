@@ -74,22 +74,29 @@ public class CaveGenerator : MonoBehaviour
 
     void EnsureEntrance()
     {
-        int entranceX = width / 2; // Entrance at middle of width
-        int entranceY = height - 1; // Entrance at the top border
+        // Convert world space (14,0,50) to grid space
+        int entranceX = 14;  // Directly using 14 since tileSize is unknown
+        int entranceY = height - 1; // Ensure it's at the top edge
 
-        // Clear a small area for entrance
-        for (int dx = -2; dx <= 2; dx++)
+        Debug.Log($"Ensuring entrance at: ({entranceX}, {entranceY}) in grid space");
+
+        // Carve out the entrance area
+        for (int dy = 0; dy < 5; dy++) // Depth into the cave
         {
-            for (int dy = 0; dy < 3; dy++) // Extends the opening inward
+            for (int dx = -2; dx <= 2; dx++) // Width of entrance
             {
                 int x = entranceX + dx;
-                int y = entranceY - dy; // Move down into the cave
-                if (x > 0 && x < width - 1 && y > 0 && y < height - 1)
+                int y = entranceY - dy;
+
+                // Ensure within bounds before modifying
+                if (x >= 0 && x < width && y >= 0 && y < height)
                 {
-                    map[x, y] = 0; // Ensure it's open space
+                    map[x, y] = 0; // Set tile to empty (carving entrance)
                 }
             }
         }
+
+        Debug.Log($"Entrance successfully created at grid: ({entranceX}, {entranceY})");
     }
 
     int GetSurroundingWallCount(int x, int y)
