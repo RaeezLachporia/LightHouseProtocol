@@ -270,9 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df9ed691201611479f8459bc2690d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 50
-  height: 50
-  fillPercent: 0.45
+  width: 100
+  height: 100
+  fillPercent: 0.4
   smoothingIterations: 5
   seed: 
   useRandomSeed: 1
@@ -413,7 +413,7 @@ Transform:
   m_GameObject: {fileID: 666803755}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 199}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -659,7 +659,7 @@ Transform:
   m_GameObject: {fileID: 1533385232}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 171.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -678,8 +678,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a74f0b7581962240b01b5f91afe5838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 3
-  runSpeed: 6
+  walkSpeed: 6
+  runSpeed: 9
   jumpForce: 3
   gravity: 9
   mouseSensitivity: 2
