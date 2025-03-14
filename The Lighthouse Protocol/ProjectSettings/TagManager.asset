@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tower
   - placementLayer
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - PlacementLayer
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
