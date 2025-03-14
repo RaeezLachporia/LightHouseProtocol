@@ -63,6 +63,17 @@ public class TowerShooting : MonoBehaviour
         if (GatlingProjectile == null || shootPoint == null) return;
 
         GameObject bullet = Instantiate(GatlingProjectile, shootPoint.position, shootPoint.rotation);
-       
+        Projectile projectilescript = bullet.GetComponent < Projectile >();
+        if (projectilescript != null)
+        {
+            projectilescript.SetTarget(enemyTarget);
+        }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, twrRange);
+    }
+    
 }
