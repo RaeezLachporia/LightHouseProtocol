@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public float health = 50f;
+    public float Maxhealth = 50f;
+    private float currentHealth;
+    public Slider HealthSlider;
     void Start()
     {
-        
+        currentHealth = Maxhealth;
+        HealthSlider.maxValue = Maxhealth;
+        HealthSlider.value = Maxhealth;
     }
 
     // Update is called once per frame
@@ -18,8 +23,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        health -= amount;
-        if (health <= 0)
+        currentHealth -= amount;
+        HealthSlider.value = currentHealth;
+        if (currentHealth <= 0)
         {
             Destroy(gameObject);
         }
