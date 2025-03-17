@@ -35,7 +35,7 @@ public class LightHouseScript : MonoBehaviour
         float normalizedEnergy = Mathf.Clamp(currentEnergy / maxEnergy, 0f, 1f);
         float newRaidus = Mathf.Lerp(domeRadius, maxDomeRadius, normalizedEnergy);
 
-        Debug.Log("Udpating the dome size: " + newRaidus); 
+        //Debug.Log("Udpating the dome size: " + newRaidus); 
         domeCollider.radius = newRaidus;
 
         if (Dome != null)
@@ -45,7 +45,7 @@ public class LightHouseScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Dome visual is not assigned in the inspector");
+            //Debug.Log("Dome visual is not assigned in the inspector");
         }
 
         
