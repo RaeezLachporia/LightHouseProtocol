@@ -6,10 +6,21 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 10f;
     public float damage = 10f;
+    public float lifetime = 5f;
     private Transform target;
     public void SetTarget(Transform enemy)
     {
         target = enemy;
+        if (target != null)
+        {
+            float distance = Vector3.Distance(transform.position, target.position);
+            lifetime = distance / speed;
+            Destroy(gameObject, lifetime + 0.5f);
+        }
+        else
+        {
+            Destroy(gameObject, 5f);
+        }
     }
     void Start()
     {
@@ -36,5 +47,14 @@ public class Projectile : MonoBehaviour
                 enemyHealth.TakeDamage(damage);
             }
         }
+    }
+
+    private void TargetHit()
+    {
+        if (target.TryGetComponent(out EnemyHealth enemyHealth))  
+        {
+            enemyHealth.TakeDamage(damage);
+        }
+        Destroy(gameObject);
     }
 }
