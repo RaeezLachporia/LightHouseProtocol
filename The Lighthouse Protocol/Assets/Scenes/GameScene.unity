@@ -660,7 +660,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 138496781878157402, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
   m_PrefabInstance: {fileID: 2098852087}
   m_PrefabAsset: {fileID: 0}
---- !u!120 &279703481
+--- !u!114 &279703482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279703480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c3cd4e2a01a374e86b677de69224ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 304.8
+  dps: 5
+  shootPoint: {fileID: 1884446874}
+  laserLine: {fileID: 279703490}
+--- !u!4 &279703486 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3821816041244120067, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
+  m_PrefabInstance: {fileID: 2098852087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!120 &279703490
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -705,14 +726,6 @@ LineRenderer:
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -728,21 +741,12 @@ LineRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.8867924, g: 0, b: 0, a: 1}
+      key0: {r: 1, g: 0, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -781,27 +785,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &279703482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279703480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c3cd4e2a01a374e86b677de69224ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 304.8
-  dps: 5
-  shootPoint: {fileID: 1884446874}
-  laserLine: {fileID: 279703481}
---- !u!4 &279703486 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3821816041244120067, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
-  m_PrefabInstance: {fileID: 2098852087}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &286461036
 GameObject:
   m_ObjectHideFlags: 0
@@ -3784,7 +3767,7 @@ PrefabInstance:
       addedObject: {fileID: 279703482}
     - targetCorrespondingSourceObject: {fileID: 138496781878157402, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 279703481}
+      addedObject: {fileID: 279703490}
   m_SourcePrefab: {fileID: 100100000, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
 --- !u!1 &2115508700
 GameObject:

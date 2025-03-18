@@ -50,8 +50,11 @@ public class LaserBeam : MonoBehaviour
 
     void FireLaser()
     {
-        if (target == null) return;
-        
+        if (target == null)
+        {
+            DeactivateLaser();
+            return;
+        }
         laserLine.enabled = true;
         laserLine.SetPosition(0, shootPoint.position);
         laserLine.SetPosition(1, target.position);
@@ -67,6 +70,7 @@ public class LaserBeam : MonoBehaviour
     void DeactivateLaser()
     {
         laserLine.enabled = false;
+        laserLine.SetPosition(1, shootPoint.position);
     }
 
     private void OnDrawGizmosSelected()
