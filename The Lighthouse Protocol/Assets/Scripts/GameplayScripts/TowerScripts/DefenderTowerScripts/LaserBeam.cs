@@ -10,6 +10,7 @@ public class LaserBeam : MonoBehaviour
     public Transform shootPoint;
     public LineRenderer laserLine;
     private Transform target;
+    public float rotationSpeed = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,5 +78,18 @@ public class LaserBeam : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    void RotateToTarget()
+    {
+        Vector3 direction = target.position - transform.position;
+        direction.y = 0;
+        Quaternion rotationtoTarget = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationtoTarget, Time.deltaTime * rotationSpeed);
+
+        if (shootPoint != null)
+        {
+            shootPoint.LookAt(target.position);
+        }
     }
 }
