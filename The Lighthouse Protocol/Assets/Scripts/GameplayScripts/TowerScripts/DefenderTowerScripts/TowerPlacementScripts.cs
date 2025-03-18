@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TowerPlacementScripts : MonoBehaviour
 {
     public List<GameObject> towerPrefabs;
+    public List<int> towerPrices;
     public LayerMask placementLayer;
     public float gridSize = 2f;
     public GameObject ghostTowerPrefab;
@@ -13,7 +14,7 @@ public class TowerPlacementScripts : MonoBehaviour
     private Camera cam;
     private bool isPlacingTower = false;
     private int TowerIndex = -1;
-    public int TowerPrice = 100;
+    
     void Start()
     {
         cam = Camera.main;
@@ -74,7 +75,10 @@ public class TowerPlacementScripts : MonoBehaviour
 
     private void PlaceTowers(Vector3 position)
     {
-        if (GameManager.Instance.moneySpending(TowerPrice))
+        if (TowerIndex < 0 || TowerIndex >= towerPrices.Count) return;
+
+        int towerCost = towerPrices[TowerIndex];
+        if (GameManager.Instance.moneySpending(towerCost))
         {
             RaycastHit hit;
             if (Physics.Raycast(position + Vector3.up * 5f, Vector3.down, out hit, 10f, placementLayer))
@@ -92,6 +96,15 @@ public class TowerPlacementScripts : MonoBehaviour
             /*GameObject newTower = Instantiate(towerPrefabs[TowerIndex], position, Quaternion.identity);
             newTower.tag = "Tower";
             Debug.Log("Tower placed: " + towerPrefabs[TowerIndex].name);*/
+
+            if (currentGhostTower != null)
+            {
+                Destroy(currentGhostTower);
+                currentGhostTower = null;
+            }
+            isPlacingTower = false;
+            TowerIndex = -1;
+            
         }
         else
         {
@@ -103,7 +116,7 @@ public class TowerPlacementScripts : MonoBehaviour
     public void SelectTOwer(int index)
     {
         TowerIndex = index;
-        Debug.Log("Selected tower: " + towerPrefabs[TowerIndex].name);
+        Debug.Log("Selected tower: " + towerPrefabs[TowerIndex].name + "| cost: " + towerPrices[TowerIndex]);
 
         if (currentGhostTower != null)
         {

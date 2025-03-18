@@ -3523,12 +3523,12 @@ MonoBehaviour:
   towerPrefabs:
   - {fileID: 7251844597986043486, guid: 7a295d3763ff6834d951b2850a28d628, type: 3}
   - {fileID: 4375811525168740636, guid: 1618e2759766d6d4d8892cc14f0b965e, type: 3}
+  towerPrices: 6400000096000000
   placementLayer:
     serializedVersion: 2
     m_Bits: 8
   gridSize: 2
   ghostTowerPrefab: {fileID: 138496781878157402, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
-  TowerPrice: 100
 --- !u!4 &2013014126
 Transform:
   m_ObjectHideFlags: 0
