@@ -708,6 +708,11 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -715,8 +720,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.013698578
-        value: 0.15432167
+        time: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -724,8 +729,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.9780822
-        value: 0.4814815
+        time: 1
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -788,7 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c3cd4e2a01a374e86b677de69224ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 300
+  range: 304.8
   dps: 5
   shootPoint: {fileID: 1884446874}
   laserLine: {fileID: 279703481}
@@ -3729,7 +3734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3821816041244120067, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1473.7654
+      value: 1489
       objectReference: {fileID: 0}
     - target: {fileID: 3821816041244120067, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3737,7 +3742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3821816041244120067, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 350.2441
+      value: 321
       objectReference: {fileID: 0}
     - target: {fileID: 3821816041244120067, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
       propertyPath: m_LocalRotation.w
