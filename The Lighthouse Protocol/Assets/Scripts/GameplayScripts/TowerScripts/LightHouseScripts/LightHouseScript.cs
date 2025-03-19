@@ -8,6 +8,8 @@ public class LightHouseScript : MonoBehaviour
     public float currentEnergy;
     public float domeRadius = 5f;
     public float maxDomeRadius = 10f;
+    public float EnergyDrain = 5f;
+    public float DamageToEnemy = 10f;
     public GameObject Dome;
 
     private SphereCollider domeCollider;
@@ -19,8 +21,9 @@ public class LightHouseScript : MonoBehaviour
         if (domeCollider == null)
         {
             domeCollider = gameObject.AddComponent<SphereCollider>();
-            domeCollider.isTrigger = true;
+            
         }
+        domeCollider.isTrigger = true;
         UpdateDomeSize();
     }
 
@@ -51,5 +54,19 @@ public class LightHouseScript : MonoBehaviour
         
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(DamageToEnemy);
+            }
+            currentEnergy -= EnergyDrain;
+
+            Debug.Log("Enemy touched the dome");
+        }
+    }
+
 }

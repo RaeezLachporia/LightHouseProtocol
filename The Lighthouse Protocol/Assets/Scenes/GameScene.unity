@@ -2021,6 +2021,8 @@ MonoBehaviour:
   currentEnergy: 1000
   domeRadius: 10
   maxDomeRadius: 900
+  EnergyDrain: 5
+  DamageToEnemy: 10
   Dome: {fileID: 864693153}
 --- !u!65 &1250316993
 BoxCollider:
@@ -3346,6 +3348,7 @@ GameObject:
   - component: {fileID: 1929292262}
   - component: {fileID: 1929292267}
   - component: {fileID: 1929292268}
+  - component: {fileID: 1929292269}
   m_Layer: 6
   m_Name: Capsule
   m_TagString: Enemy
@@ -3390,7 +3393,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3477,6 +3480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Maxhealth: 50
+  currentHealth: 0
   HealthSlider: {fileID: 1593026961}
 --- !u!114 &1929292268
 MonoBehaviour:
@@ -3491,6 +3495,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NavTarget: {fileID: 1927580839}
+--- !u!54 &1929292269
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929292261}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2013014124
 GameObject:
   m_ObjectHideFlags: 0
