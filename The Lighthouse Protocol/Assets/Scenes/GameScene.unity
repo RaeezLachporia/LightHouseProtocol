@@ -2019,8 +2019,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnergy: 1000
   currentEnergy: 1000
+  minDomeRadius: 2
   domeRadius: 10
-  maxDomeRadius: 900
+  maxDomeRadius: 3
   EnergyDrain: 5
   DamageToEnemy: 10
   Dome: {fileID: 864693153}

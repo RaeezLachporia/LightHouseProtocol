@@ -6,6 +6,7 @@ public class LightHouseScript : MonoBehaviour
 {
     public float maxEnergy = 100f;
     public float currentEnergy;
+    public float minDomeRadius = 2f;
     public float domeRadius = 5f;
     public float maxDomeRadius = 10f;
     public float EnergyDrain = 5f;
