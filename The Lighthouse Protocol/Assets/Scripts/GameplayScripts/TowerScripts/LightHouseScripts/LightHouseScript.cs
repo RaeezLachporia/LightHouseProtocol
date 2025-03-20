@@ -4,70 +4,96 @@ using UnityEngine;
 
 public class LightHouseScript : MonoBehaviour
 {
+   
     public float maxEnergy = 100f;
-    public float currentEnergy;
+    public float currentEnergy = 100f;
     public float minDomeRadius = 2f;
-    public float domeRadius = 5f;
     public float maxDomeRadius = 10f;
-    public float EnergyDrain = 5f;
-    public float DamageToEnemy = 10f;
     public GameObject Dome;
 
+    public float damagePerSecond = 10f;    // Damage dealt to enemies per second
+    public float energyDrainPerSecond = 5f; // Energy lost per second when an enemy touches the dome
+
     private SphereCollider domeCollider;
+
     void Start()
     {
-        currentEnergy = maxEnergy;
+        currentEnergy = Mathf.Clamp(currentEnergy, 0, maxEnergy);
         domeCollider = GetComponent<SphereCollider>();
 
         if (domeCollider == null)
         {
             domeCollider = gameObject.AddComponent<SphereCollider>();
-            
         }
+
         domeCollider.isTrigger = true;
-        UpdateDomeSize();
+
+        // Set initial dome size
+        UpdateDomeSize(true);
     }
 
-    
     void Update()
     {
         UpdateDomeSize();
     }
 
-    private void UpdateDomeSize() //Handles updating the dome size for the light house
+    private void UpdateDomeSize(bool forceFullSize = false)
     {
         float normalizedEnergy = Mathf.Clamp(currentEnergy / maxEnergy, 0f, 1f);
-        float newRaidus = Mathf.Lerp(domeRadius, maxDomeRadius, normalizedEnergy);
+        float newRadius = forceFullSize ? maxDomeRadius : Mathf.Lerp(minDomeRadius, maxDomeRadius, normalizedEnergy);
 
-        //Debug.Log("Udpating the dome size: " + newRaidus); 
-        domeCollider.radius = newRaidus;
-
+        // Update collider and dome size
+        domeCollider.radius = newRadius;
         if (Dome != null)
         {
-            Dome.transform.localScale = Vector3.one * newRaidus * 2;
-           
+            float scaleFactor = newRadius * 2f;
+            Dome.transform.localScale =new Vector3(scaleFactor,scaleFactor,scaleFactor);
+            Dome.transform.position = transform.position;
+        }
+
+        // If energy is 0, disable the dome
+        if (currentEnergy <= 0)
+        {
+            domeCollider.enabled = false;
+            if (Dome != null) Dome.SetActive(false);
         }
         else
         {
-            //Debug.Log("Dome visual is not assigned in the inspector");
+            domeCollider.enabled = true;
+            if (Dome != null) Dome.SetActive(true);
         }
-
-        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && currentEnergy > 0)
         {
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(DamageToEnemy);
+                enemyHealth.TakeDamage(damagePerSecond);
             }
-            currentEnergy -= EnergyDrain;
 
-            Debug.Log("Enemy touched the dome");
+            // Drain energy
+            currentEnergy -= energyDrainPerSecond;
+            currentEnergy = Mathf.Max(0, currentEnergy);
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Enemy") && currentEnergy > 0)
+        {
+            // Prevent the enemy from moving forward by pushing it back
+            Rigidbody enemyRb = other.GetComponent<Rigidbody>();
+            if (enemyRb != null)
+            {
+                Vector3 pushDirection = (other.transform.position - transform.position).normalized;
+                enemyRb.AddForce(pushDirection * 10f, ForceMode.Force);
+            }
+        }
+    }
 }
+
+
+

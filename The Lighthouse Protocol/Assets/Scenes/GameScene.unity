@@ -1519,7 +1519,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 505.26312, y: 26.927704, z: 494.27063}
-  m_LocalScale: {x: 2877.117, y: 2877.1172, z: 2877.117}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2020,11 +2020,10 @@ MonoBehaviour:
   maxEnergy: 1000
   currentEnergy: 1000
   minDomeRadius: 3
-  domeRadius: 10
   maxDomeRadius: 5
-  EnergyDrain: 5
-  DamageToEnemy: 10
   Dome: {fileID: 864693153}
+  damagePerSecond: 10
+  energyDrainPerSecond: 5
 --- !u!65 &1250316993
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3461,7 +3460,7 @@ Transform:
   m_GameObject: {fileID: 1929292261}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1821.9482, y: 60, z: 72.078125}
+  m_LocalPosition: {x: 1925.6487, y: 35.210144, z: -570.13184}
   m_LocalScale: {x: 35.210205, y: 35.210205, z: 35.210205}
   m_ConstrainProportionsScale: 0
   m_Children:
