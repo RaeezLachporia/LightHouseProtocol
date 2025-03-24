@@ -1,20 +1,34 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CaveGenerator : MonoBehaviour
 {
-    public int width = 50;
-    public int height = 50;
-    public int depth = 5; // Number of levels on the Y-axis
-    public float fillPercent = 0.45f;
+    public int width = 100;
+    public int height = 100;
+    public int depth = 10; // Number of levels on the Y-axis
+    public float fillPercent = 0.4f;
     public int smoothingIterations = 5;
     public string seed;
     public bool useRandomSeed = true;
 
+    public GameObject enemyPrefab; // Assign your Enemy prefab in the Inspector
+    public int enemyCount = 2; // Number of enemies to spawn
+
+    public GameObject resourcePrefab; // Assign your Resource prefab in the Inspector
+    public int resourceCount = 5; // Number of resources to spawn
+
     private int[,,] map;
+
+    private List<Vector3> openPositions = new List<Vector3>();
 
     void Start()
     {
         GenerateCave();
+
+        FindOpenSpaces();
+        SpawnEnemies();
+
+        SpawnResources();
     }
 
     void GenerateCave()
@@ -30,6 +44,28 @@ public class CaveGenerator : MonoBehaviour
         EnsureEntrance();
         DrawCave();
     }
+
+    void FindOpenSpaces()
+    {
+        openPositions.Clear();
+        Vector3 offset = new Vector3(-width / 2, 0, -height / 2);
+
+        for (int x = 1; x < width - 1; x++)
+        {
+            for (int y = 1; y < depth - 1; y++)
+            {
+                for (int z = 1; z < height - 1; z++)
+                {
+                    if (map[x, y, z] == 0) // 0 means walkable area
+                    {
+                        Vector3 worldPos = new Vector3(x, y, z) + offset;
+                        openPositions.Add(worldPos);
+                    }
+                }
+            }
+        }
+    }
+
 
     void RandomFillMap()
     {
@@ -155,4 +191,61 @@ public class CaveGenerator : MonoBehaviour
             }
         }
     }
+
+    void SpawnEnemies()
+    {
+        if (enemyPrefab == null)
+        {
+            Debug.LogError("Enemy prefab is not assigned!");
+            return;
+        }
+
+        if (openPositions.Count < enemyCount)
+        {
+            Debug.LogError("Not enough open spaces to spawn enemies!");
+            return;
+        }
+
+        System.Random rand = new System.Random();
+
+        for (int i = 0; i < enemyCount; i++)
+        {
+            int index = rand.Next(openPositions.Count);
+            Vector3 spawnPos = openPositions[index];
+            openPositions.RemoveAt(index); // Prevent spawning two enemies in the same spot
+
+            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            Debug.Log($"Spawned enemy at {spawnPos}");
+        }
+    }
+
+    void SpawnResources()
+    {
+        if (resourcePrefab == null)
+        {
+            Debug.LogError("Resource prefab is not assigned!");
+            return;
+        }
+
+        if (openPositions.Count < resourceCount)
+        {
+            Debug.LogWarning("Not enough open spaces to spawn all resources!");
+        }
+
+        System.Random rand = new System.Random();
+
+        for (int i = 0; i < resourceCount; i++)
+        {
+            if (openPositions.Count == 0) break; // Avoid errors if all spots are taken
+
+            int index = rand.Next(openPositions.Count);
+            Vector3 spawnPos = openPositions[index];
+            openPositions.RemoveAt(index); // Prevent overlapping spawns
+
+            Instantiate(resourcePrefab, spawnPos, Quaternion.identity);
+            Debug.Log($"Spawned resource at {spawnPos}");
+        }
+    }
+
+
 }
