@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.updateMoney(currentMoney);
             return true; // spent money successfully
         }
-        else return false;// no money brokie
+        else return false;// no money 
     }
 
     public void GainMoney(int amount)
