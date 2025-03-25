@@ -15,6 +15,7 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         invetoryCnavas.active = false;
+        inventoryResources["Wood"] = 10;
         LoadCollectedResources();
         UpdateInventoryUI();
     }
@@ -71,9 +72,46 @@ public class InventoryManager : MonoBehaviour
 
     void UpdateInventoryUI()
     {
+        // Check if inventoryPanel is assigned
+        if (inventoryPanel == null)
+        {
+            Debug.LogError("Inventory Panel is not assigned in the Inspector!");
+            return;
+        }
+
+        // Clear existing items
         foreach (Transform child in inventoryPanel)
         {
-            //Destroy(child.gameObject);
+            Destroy(child.gameObject);
+        }
+        resourceTexts.Clear();
+
+        // Instantiate new UI items
+        foreach (var item in inventoryResources)
+        {
+            Debug.Log("Updating UI for: " + item.Key + " - " + item.Value); // Log updates
+
+            // Instantiate the new item under the inventory panel
+            GameObject newItem = Instantiate(ItemPrefab, inventoryPanel);
+
+            // Ensure it is positioned correctly in the panel
+            newItem.transform.localPosition = Vector3.zero; // Reset local position if necessary
+
+            // Get the Text component and set it
+            Text resourceText = newItem.GetComponent<Text>();
+            if (resourceText != null)
+            {
+                resourceText.text = item.Key + ": " + item.Value;
+                resourceTexts[item.Key] = resourceText;
+            }
+            else
+            {
+                Debug.LogError("Text component missing in prefab!");
+            }
+        }
+        /*foreach (Transform child in inventoryPanel)
+        {
+            Destroy(child.gameObject);
         }
         resourceTexts.Clear();
         foreach (var item in inventoryResources)
@@ -89,7 +127,7 @@ public class InventoryManager : MonoBehaviour
             {
                 Debug.Log("Resource item prefab missing a text component");
             }
-        }
+        }*/
     }
 
     public void ToggleInventory()
