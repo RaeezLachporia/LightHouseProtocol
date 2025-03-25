@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour
     {
         invetoryCnavas.active = false;
         inventoryResources["Wood"] = 10;
+        inventoryResources["metal"] = 10;
         LoadCollectedResources();
         UpdateInventoryUI();
     }
@@ -98,11 +99,11 @@ public class InventoryManager : MonoBehaviour
             newItem.transform.localPosition = Vector3.zero; // Reset local position if necessary
 
             // Get the Text component and set it
-            Text resourceText = newItem.GetComponent<Text>();
+            TMP_Text resourceText = newItem.GetComponent<TMP_Text>();
             if (resourceText != null)
             {
                 resourceText.text = item.Key + ": " + item.Value;
-                resourceTexts[item.Key] = resourceText;
+                
             }
             else
             {
