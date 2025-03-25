@@ -73,7 +73,7 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (Transform child in inventoryPanel)
         {
-            Destroy(child.gameObject);
+            //Destroy(child.gameObject);
         }
         resourceTexts.Clear();
         foreach (var item in inventoryResources)
