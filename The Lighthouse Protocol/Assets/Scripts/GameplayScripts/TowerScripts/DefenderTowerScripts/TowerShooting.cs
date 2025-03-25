@@ -11,6 +11,8 @@ public class TowerShooting : MonoBehaviour
     public LayerMask enemyLayer; // only detects objects labeled as enemy
     private Transform enemyTarget;
     private float cooldown = 0f;
+    private int upgradeLevel = 0;
+    private Dictionary<int, Dictionary<string, int>> upgradeCost = new Dictionary<int, Dictionary<string, int>>();
     void Start()
     {
         
@@ -80,5 +82,38 @@ public class TowerShooting : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, twrRange);
     }
+
+    private void UpgradeCosts()
+    {
+        upgradeCost[0] = new Dictionary<string, int> { { "Wood", 10 }, { "Metal", 5 } };
+    }
     
+    public Dictionary<string, int> GetUpgradeCost()
+    {
+        if (upgradeCost.ContainsKey(upgradeLevel))
+        {
+            return upgradeCost[upgradeLevel];
+        }
+        return null;
+    }
+
+    public bool UpgradeTower()
+    {
+        if (!upgradeCost.ContainsKey(upgradeLevel)) return false;
+        Dictionary<string, int> cost = upgradeCost[upgradeLevel];
+        if (InventoryManager.HasRequiredResources(cost))
+        {
+            InventoryManager.UseResources(cost);
+            ConfirmUpgrade();
+            return true;
+        }
+        return false;
+    }
+    private void ConfirmUpgrade()
+    {
+        upgradeLevel++;
+        twrRange += 2f;
+        fireRate += 20f;
+        Debug.Log("Tower upgrades" + upgradeLevel);
+    }
 }

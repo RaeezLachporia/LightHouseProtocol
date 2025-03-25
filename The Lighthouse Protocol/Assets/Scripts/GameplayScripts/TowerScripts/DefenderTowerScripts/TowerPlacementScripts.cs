@@ -14,7 +14,8 @@ public class TowerPlacementScripts : MonoBehaviour
     private Camera cam;
     private bool isPlacingTower = false;
     private int TowerIndex = -1;
-    
+    private Dictionary<int, GameObject> placedTowers = new Dictionary<int, GameObject>();
+    private int towerID = 0;
     void Start()
     {
         cam = Camera.main;
@@ -76,7 +77,7 @@ public class TowerPlacementScripts : MonoBehaviour
     private void PlaceTowers(Vector3 position)
     {
         if (TowerIndex < 0 || TowerIndex >= towerPrices.Count) return;
-
+        int IDCounter = towerID++;
         int towerCost = towerPrices[TowerIndex];
         if (GameManager.Instance.moneySpending(towerCost))
         {
@@ -88,14 +89,15 @@ public class TowerPlacementScripts : MonoBehaviour
                 GameObject newTower = Instantiate(towerPrefabs[TowerIndex], adjustPosition, Quaternion.identity);
                 newTower.tag = "Tower";
                 Debug.Log("Tower has been place on the right layer and level" + towerPrefabs[TowerIndex]);
+                placedTowers[IDCounter] = newTower;
+                newTower.name = "Tower_" + IDCounter;
+                Debug.Log("placed tower ID: " + IDCounter);
             }
             else
             {
                 Debug.LogWarning("No valid ground");
             }
-            /*GameObject newTower = Instantiate(towerPrefabs[TowerIndex], position, Quaternion.identity);
-            newTower.tag = "Tower";
-            Debug.Log("Tower placed: " + towerPrefabs[TowerIndex].name);*/
+            
 
             if (currentGhostTower != null)
             {
@@ -110,9 +112,13 @@ public class TowerPlacementScripts : MonoBehaviour
         {
             Debug.Log("You dont have enough money to place the tower");
         }
+       
     }
 
-
+    public int CountTowers()
+    {
+        return placedTowers.Count;
+    }
     public void SelectTOwer(int index)
     {
         TowerIndex = index;
@@ -135,5 +141,14 @@ public class TowerPlacementScripts : MonoBehaviour
             color.a = alpha;
             rend.material.color = color;
         }
+    }
+
+    public GameObject TowerIDChecker(int TowerId)
+    {
+        if (placedTowers.ContainsKey(towerID))
+        {
+            return placedTowers[towerID];
+        }
+        return null;
     }
 }
