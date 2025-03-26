@@ -34,4 +34,14 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(5);
     }
 
+    public void TestTower()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void TestExp()
+    {
+        SceneManager.LoadScene(3);
+    }
+
 }

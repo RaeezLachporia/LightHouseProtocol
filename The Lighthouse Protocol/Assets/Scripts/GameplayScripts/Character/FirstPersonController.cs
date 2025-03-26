@@ -29,6 +29,12 @@ public class FirstPersonController : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
 
+    // Crouch Variables
+    public float crouchSpeed = 3f;
+    public float crouchHeight = 1f;
+    public float normalHeight = 2f;
+    private bool isCrouching = false;
+
     // UI References
     public Slider staminaBar;
     public Slider healthBar;
@@ -66,14 +72,14 @@ public class FirstPersonController : MonoBehaviour
         {
             staminaBar.maxValue = maxStamina;
             staminaBar.value = currentStamina;
-            ChangeSliderColor(staminaBar, Color.yellow); // Set Stamina Bar Color to Yellow
+            ChangeSliderColor(staminaBar, Color.yellow);
         }
 
         if (healthBar != null)
         {
             healthBar.maxValue = maxHealth;
             healthBar.value = currentHealth;
-            ChangeSliderColor(healthBar, Color.red); // Set Health Bar Color to Red
+            ChangeSliderColor(healthBar, Color.red);
         }
     }
 
@@ -90,8 +96,8 @@ public class FirstPersonController : MonoBehaviour
 
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
 
-        bool isSprinting = Input.GetKey(KeyCode.LeftShift) && currentStamina > 0;
-        float speed = isSprinting ? runSpeed : walkSpeed;
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift) && currentStamina > 0 && !isCrouching;
+        float speed = isSprinting ? runSpeed : (isCrouching ? crouchSpeed : walkSpeed);
 
         if (isSprinting)
         {
@@ -127,6 +133,38 @@ public class FirstPersonController : MonoBehaviour
 
         if (staminaBar != null) staminaBar.value = currentStamina;
         if (healthBar != null) healthBar.value = currentHealth;
+
+        HandleCrouch();
+    }
+
+    void HandleCrouch()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Crouch();
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            StandUp();
+        }
+    }
+
+    void Crouch()
+    {
+        if (controller != null)
+        {
+            controller.height = crouchHeight;
+            isCrouching = true;
+        }
+    }
+
+    void StandUp()
+    {
+        if (controller != null)
+        {
+            controller.height = normalHeight;
+            isCrouching = false;
+        }
     }
 
     // Helper Function to Change Slider Fill Color

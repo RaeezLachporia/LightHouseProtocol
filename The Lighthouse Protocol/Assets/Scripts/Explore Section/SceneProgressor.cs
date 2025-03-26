@@ -3,14 +3,29 @@ using UnityEngine.SceneManagement;
 
 public class SceneProgressor : MonoBehaviour
 {
+
+    private Camera playerCamera;
+
     public string progressObjectTag = "Progress"; // Tag assigned to the "Progress" GameObject
     public float interactionRange = 3f; // Distance at which players can interact
 
-    private void Update()
+    void Start()
+    {
+        playerCamera = Camera.main;  // Initialize the camera
+    }
+
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            TryProgressScene();
+            RaycastHit hit;
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 3f))
+            {
+                if (hit.collider.gameObject.CompareTag("Progress"))
+                {
+                    SceneManager.LoadScene(1); // Ensure this only runs for the correct object
+                }
+            }
         }
     }
 
