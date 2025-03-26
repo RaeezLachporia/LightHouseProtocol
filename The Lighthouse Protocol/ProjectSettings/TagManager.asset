@@ -3,20 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Tower
-  - placementLayer
-  - Enemy
-  - mats
-  - LaserTower
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - PlacementLayer
+  - 
   - Water
   - UI
-  - Enemy
+  - 
   - 
   - 
   - 

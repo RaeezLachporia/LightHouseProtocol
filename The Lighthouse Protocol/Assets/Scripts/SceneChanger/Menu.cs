@@ -6,6 +6,11 @@ public class Menu : MonoBehaviour
 {
     public void PlayGame()
     {
+        SceneManager.LoadScene(1);
+    }
+
+    public void backmenu()
+    {
         SceneManager.LoadScene(0);
     }
 
@@ -16,7 +21,17 @@ public class Menu : MonoBehaviour
 
     public void Settings()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
+    }
+
+    public void TutorialTower()
+    {
+        SceneManager.LoadScene(4);
+    }
+
+    public void TutorialExp()
+    {
+        SceneManager.LoadScene(5);
     }
 
 }
