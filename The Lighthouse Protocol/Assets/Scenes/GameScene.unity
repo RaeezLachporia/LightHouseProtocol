@@ -5656,6 +5656,7 @@ MonoBehaviour:
     m_Bits: 8
   gridSize: 2
   ghostTowerPrefab: {fileID: 138496781878157402, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
+  laserbeam: {fileID: 0}
 --- !u!4 &2013014126
 Transform:
   m_ObjectHideFlags: 0
