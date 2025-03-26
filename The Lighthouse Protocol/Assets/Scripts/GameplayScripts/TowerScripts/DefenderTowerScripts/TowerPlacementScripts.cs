@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 public class TowerPlacementScripts : MonoBehaviour
 {
     public List<GameObject> towerPrefabs;
@@ -45,10 +45,33 @@ public class TowerPlacementScripts : MonoBehaviour
             PlaceTowers(snapPos);
         }
 
-        /*if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
-            SelctedTowerForUpgrade();
-        }*/
+            Debug.Log(" mouse is being pressed");
+            //SelctedTowerForUpgrade();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Click on UI detected! Raycast ignored.");
+                return; // Stop here if clicking on UI
+            }
+            Ray raycasting = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitting;
+
+            int layerMask = ~(1 << LayerMask.NameToLayer("UI")); // Ignore UI layer
+
+            if (Physics.Raycast(ray, out hitting, Mathf.Infinity, layerMask))
+            {
+                Debug.Log("Hit Object: " + hitting.collider.name);
+            }
+            else
+            {
+                Debug.Log("Raycast didn't hit anything.");
+            }
+        }
+        
     }
 
     private Vector3 GetMouseWorldPos()
@@ -165,6 +188,7 @@ public class TowerPlacementScripts : MonoBehaviour
     {
         Ray raycast = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        Debug.DrawRay(raycast.origin, raycast.direction * 100f, Color.red, 1f);
         if (Physics.Raycast(raycast, out hit, Mathf.Infinity))
         {
             if (hit.collider.CompareTag("Tower") || hit.collider.CompareTag("LaserTower"))

@@ -1056,6 +1056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GatlingTower 1 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7251844597986043486, guid: 7a295d3763ff6834d951b2850a28d628, type: 3}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     - target: {fileID: 7864988381197125590, guid: 7a295d3763ff6834d951b2850a28d628, type: 3}
       propertyPath: m_LocalPosition.x
       value: 491.36298
@@ -2662,7 +2666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
   m_OnCullStateChanged:
@@ -5851,7 +5855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
