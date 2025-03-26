@@ -123,9 +123,7 @@ MonoBehaviour:
   fireRate: 2
   GatlingProjectile: {fileID: 82700097751506767, guid: b0a561e70e1792b4ab36e9208ccd27da, type: 3}
   shootPoint: {fileID: 8529022485049280875}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  enemyTag: Enemy
 --- !u!1 &7326260659165208203
 GameObject:
   m_ObjectHideFlags: 0

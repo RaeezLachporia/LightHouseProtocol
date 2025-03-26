@@ -8,7 +8,8 @@ public class TowerShooting : MonoBehaviour
     public float fireRate = 1f;//rate of fire for the tower
     public GameObject GatlingProjectile;//prefab of the projectile for the specific tower
     public Transform shootPoint;//point where the projectile is fired from 
-    public LayerMask enemyLayer; // only detects objects labeled as enemy
+    //public LayerMask enemyLayer; // only detects objects labeled as enemy
+    public string enemyTag = "Enemy";
     private Transform enemyTarget;
     private float cooldown = 0f;
     private int upgradeLevel = 0;
@@ -37,14 +38,14 @@ public class TowerShooting : MonoBehaviour
 
     private Transform detectClosestEnemy()
     {
-        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, twrRange, enemyLayer);
+        GameObject[] enemiesInRange = GameObject.FindGameObjectsWithTag("Enemy");
         Transform closestEnemy = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach (Collider enemy in enemiesInRange)
+        foreach (GameObject enemy in enemiesInRange)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distance < closestDistance)
+            if (distance < closestDistance && distance <= twrRange) // Check if within range
             {
                 closestDistance = distance;
                 closestEnemy = enemy.transform;
