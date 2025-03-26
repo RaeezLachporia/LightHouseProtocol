@@ -8,6 +8,8 @@ TagManager:
   - placementLayer
   - Enemy
   - mats
+  - Waypoint
+  - Progress
   layers:
   - Default
   - TransparentFX

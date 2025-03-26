@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class CaveGenerator : MonoBehaviour
@@ -17,9 +18,12 @@ public class CaveGenerator : MonoBehaviour
     public GameObject resourcePrefab; // Assign your Resource prefab in the Inspector
     public int resourceCount = 5; // Number of resources to spawn
 
-    private int[,,] map;
+    public int[,,] map;
 
     private List<Vector3> openPositions = new List<Vector3>();
+
+    public GameObject waypointPrefab;// Waypoints
+    private List<Vector3> waypoints = new List<Vector3>();
 
     void Start()
     {
@@ -28,6 +32,8 @@ public class CaveGenerator : MonoBehaviour
         FindOpenSpaces();
         SpawnEnemies();
 
+
+        
         SpawnResources();
     }
 
@@ -246,6 +252,9 @@ public class CaveGenerator : MonoBehaviour
             Debug.Log($"Spawned resource at {spawnPos}");
         }
     }
+
+
+    
 
 
 }
