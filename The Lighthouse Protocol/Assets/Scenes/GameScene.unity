@@ -706,8 +706,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 493589445}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 493589447}
+        m_TargetAssemblyTypeName: PauseMenu1, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -1094,6 +1094,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7864988381197125590, guid: 7a295d3763ff6834d951b2850a28d628, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677026680116531362, guid: 7a295d3763ff6834d951b2850a28d628, type: 3}
+      propertyPath: enemyLayer.m_Bits
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1828,8 +1832,8 @@ GameObject:
   - component: {fileID: 493589443}
   - component: {fileID: 493589442}
   - component: {fileID: 493589441}
-  - component: {fileID: 493589445}
   - component: {fileID: 493589446}
+  - component: {fileID: 493589447}
   m_Layer: 5
   m_Name: UISystem
   m_TagString: Untagged
@@ -1920,19 +1924,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &493589445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493589440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe7655bd75fe5784a98aabb6ee3e7f3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1120263860}
 --- !u!114 &493589446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1948,6 +1939,19 @@ MonoBehaviour:
   clockText: {fileID: 39915588}
   timeInADay: 86400
   timeScale: 2
+--- !u!114 &493589447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493589440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d025d986f83a549a0084599d9c4008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1120263860}
 --- !u!1 &581098238
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,8 +2110,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 493589445}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 493589447}
+        m_TargetAssemblyTypeName: PauseMenu1, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
@@ -5656,6 +5660,7 @@ MonoBehaviour:
     m_Bits: 8
   gridSize: 2
   ghostTowerPrefab: {fileID: 138496781878157402, guid: 427bf50f25eb1e24298e66883a1d5039, type: 3}
+  laserbeam: {fileID: 0}
 --- !u!4 &2013014126
 Transform:
   m_ObjectHideFlags: 0
