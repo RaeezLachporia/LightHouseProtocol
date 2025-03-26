@@ -27,4 +27,9 @@ public class Movement : MonoBehaviour
             agent.SetDestination(NavTarget.position);
         }
     }
+
+    public void SetTarget(Transform newTarget)
+    {
+        NavTarget = newTarget;
+    }
 }

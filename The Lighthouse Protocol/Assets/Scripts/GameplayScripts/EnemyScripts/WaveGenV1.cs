@@ -8,6 +8,7 @@ public class WaveGenV1 : MonoBehaviour
     public GameObject enemyPrefab;
     public Transform[] spawnPoints;
     public float SpawnIntervals = 5f;
+    public Transform target;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,11 @@ public class WaveGenV1 : MonoBehaviour
         if (agent != null)
         {
             agent.Warp(spawnPoint.position);
+        }
+        Movement enemyScript = enemy.GetComponent<Movement>();
+        if (enemyScript!= null)
+        {
+            enemyScript.SetTarget(target);
         }
     }
 }
