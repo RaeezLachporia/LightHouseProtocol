@@ -16,9 +16,13 @@ public class TowerPlacementScripts : MonoBehaviour
     private int TowerIndex = -1;
     private Dictionary<int, GameObject> placedTowers = new Dictionary<int, GameObject>();
     private int towerID = 0;
+    public LaserBeam laserbeam = new LaserBeam();
+
+    private GameObject selectedTower;
     void Start()
     {
         cam = Camera.main;
+        
     }
 
     
@@ -40,6 +44,11 @@ public class TowerPlacementScripts : MonoBehaviour
         {
             PlaceTowers(snapPos);
         }
+
+        /*if (Input.GetMouseButtonDown(1))
+        {
+            SelctedTowerForUpgrade();
+        }*/
     }
 
     private Vector3 GetMouseWorldPos()
@@ -87,7 +96,7 @@ public class TowerPlacementScripts : MonoBehaviour
                 float towerHeight = towerPrefabs[TowerIndex].GetComponentInChildren<Renderer>().bounds.size.y;
                 Vector3 adjustPosition = new Vector3(hit.point.x, hit.point.y + (towerHeight / 2), hit.point.z);
                 GameObject newTower = Instantiate(towerPrefabs[TowerIndex], adjustPosition, Quaternion.identity);
-                newTower.tag = "Tower";
+                //newTower.tag = "Tower";
                 Debug.Log("Tower has been place on the right layer and level" + towerPrefabs[TowerIndex]);
                 placedTowers[IDCounter] = newTower;
                 newTower.name = "Tower_" + IDCounter;
@@ -151,4 +160,19 @@ public class TowerPlacementScripts : MonoBehaviour
         }
         return null;
     }
+
+    public void SelctedTowerForUpgrade()
+    {
+        Ray raycast = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(raycast, out hit, Mathf.Infinity))
+        {
+            if (hit.collider.CompareTag("Tower") || hit.collider.CompareTag("LaserTower"))
+            {
+                selectedTower = hit.collider.gameObject;
+                Debug.Log("Selected tower for upgrade:" + selectedTower.name);
+            }
+        }
+    }
+
 }

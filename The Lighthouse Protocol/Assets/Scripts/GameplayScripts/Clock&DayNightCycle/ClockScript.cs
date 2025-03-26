@@ -14,10 +14,10 @@ public class ClockScript : MonoBehaviour
     [Header("how fast time goes")]
     [SerializeField] private float timeScale = 2.0f;
 
-    [Header("Alarms")]
-    [SerializeField] private float playSoundAtTime;//when in the timer sound needs to be played
+    //[Header("Alarms")]
+    /*[SerializeField] private float playSoundAtTime;//when in the timer sound needs to be played
     [SerializeField] private AudioSource AlarmSound;
-    [SerializeField] private AudioClip chimingSound;
+    [SerializeField] private AudioClip chimingSound;*/
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +54,7 @@ public class ClockScript : MonoBehaviour
     private Coroutine StopAlarmsound;
     void checkTime()
     {
-        if (elapsedTime >=playSoundAtTime && !AlarmSound.isPlaying)
+        /*if (elapsedTime >=playSoundAtTime && !AlarmSound.isPlaying)
         {
             AlarmSound.clip = chimingSound;
             AlarmSound.Play();
@@ -67,20 +67,20 @@ public class ClockScript : MonoBehaviour
                 StopCoroutine(StopAlarmsound);
             }
             StopAlarmsound = StartCoroutine(StopAlarm(3f));
-        }
+        }*/
     }
 
-    IEnumerator StopAlarm(float seconds)
+/*    IEnumerator StopAlarm(float seconds)
     {
-        yield return new WaitForSeconds(seconds);
+       *//* yield return new WaitForSeconds(seconds);
         if (AlarmSound.isPlaying)
         {
             AlarmSound.Stop();
             Debug.Log("Alarm has stopped");
         }
 
-        StopAlarmsound = null;
+        StopAlarmsound = null;*//*
     }
-
+*/
 
 }
