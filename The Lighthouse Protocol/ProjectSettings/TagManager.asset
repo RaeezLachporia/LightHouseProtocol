@@ -8,6 +8,7 @@ TagManager:
   - placementLayer
   - Enemy
   - mats
+  - LaserTower
   layers:
   - Default
   - TransparentFX
