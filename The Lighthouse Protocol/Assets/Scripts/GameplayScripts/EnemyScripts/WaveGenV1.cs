@@ -47,7 +47,11 @@ public class WaveGenV1 : MonoBehaviour
         Movement enemyScript = enemy.GetComponent<Movement>();
         if (enemyScript!= null)
         {
-            enemyScript.SetTarget(target);
+            Transform nearestTarget = enemyScript.FindClosestTarget();
+            if (nearestTarget != null)
+            {
+                enemyScript.SetTarget(nearestTarget);
+            }
         }
     }
 }

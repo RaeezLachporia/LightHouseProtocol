@@ -5,31 +5,75 @@ using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
-    public Transform NavTarget;
+    public Transform LightHouse;
     private NavMeshAgent agent;
-
+    public float detectionRaidus = 20f;
+    public Transform NavTarget;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
 
-        if (NavTarget != null)
-        {
-            agent.SetDestination(NavTarget.position);
-        }
+        UpdateTarget();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (NavTarget != null)
+        UpdateTarget();
+    }
+
+    /*public void SetTarget(Transform newTarget)
+    {
+        NavTarget = newTarget;
+    }*/ //changed to allow for a new method that tracks the nearest target, if no new target detected enemy will go for the tower.
+
+    void UpdateTarget()//checks if there is a target wheter it be a defense tower or a lighthouse
+    {
+        Transform nearestTarget = FindClosestTarget();
+        if (nearestTarget != null)
         {
-            agent.SetDestination(NavTarget.position);
+            agent.SetDestination(nearestTarget.position);
+
         }
+        else if(LightHouse != null)
+        {
+            agent.SetDestination(LightHouse.position);
+        }
+    }
+
+    public Transform FindClosestTarget()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRaidus);
+        Transform closestTarget = null;
+        float closeDistance = Mathf.Infinity;
+
+        foreach (Collider col in colliders)
+        {
+            if (col.CompareTag("Tower") || col.CompareTag("LaserBeam") || col.CompareTag("LightHouse")) 
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, col.transform.position);
+                if (distanceToTarget<closeDistance)
+                {
+                    closeDistance = distanceToTarget;
+                    closestTarget = col.transform;
+                }
+            }
+        }
+        return closestTarget;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRaidus);
     }
 
     public void SetTarget(Transform newTarget)
     {
         NavTarget = newTarget;
+        if (agent != null || NavTarget!= null)
+        {
+            agent.SetDestination(NavTarget.position);
+        }
     }
 }

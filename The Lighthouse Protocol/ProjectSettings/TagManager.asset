@@ -7,6 +7,8 @@ TagManager:
   - placementLayer
   - Enemy
   - Tower
+  - LaserBeam
+  - LightHouse
   layers:
   - Default
   - TransparentFX

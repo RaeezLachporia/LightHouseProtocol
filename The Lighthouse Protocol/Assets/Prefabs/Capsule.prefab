@@ -551,6 +551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fa10df3e756dd4cb46f080b78a83d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LightHouse: {fileID: 0}
+  detectionRaidus: 10000
   NavTarget: {fileID: 0}
 --- !u!54 &3263220438565556489
 Rigidbody:
