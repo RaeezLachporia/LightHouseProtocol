@@ -3574,7 +3574,7 @@ MonoBehaviour:
   maxEnergy: 1000
   currentEnergy: 1000
   minDomeRadius: 3
-  maxDomeRadius: 5
+  maxDomeRadius: 700
   Dome: {fileID: 864693153}
   damagePerSecond: 10
   energyDrainPerSecond: 5

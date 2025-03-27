@@ -102,10 +102,10 @@ public class TowerPlacementScripts : MonoBehaviour
             {
                 return false;
             }
-            if (col.CompareTag("Tower"))
+            /*if (col.CompareTag("Tower"))
             {
                 return false;
-            }
+            }*/
 
         }
         return true;
