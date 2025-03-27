@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        LightHouse = GameObject.FindWithTag("LightHouse").transform;
 
         UpdateTarget();
     }
@@ -33,12 +34,17 @@ public class Movement : MonoBehaviour
         Transform nearestTarget = FindClosestTarget();
         if (nearestTarget != null)
         {
-            agent.SetDestination(nearestTarget.position);
+            NavTarget = nearestTarget;
 
         }
         else if(LightHouse != null)
         {
-            agent.SetDestination(LightHouse.position);
+            NavTarget = LightHouse;
+        }
+
+        if (NavTarget != null || agent != null)
+        {
+            agent.SetDestination(NavTarget.position);
         }
     }
 

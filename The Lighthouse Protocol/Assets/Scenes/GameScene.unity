@@ -2162,7 +2162,6 @@ MonoBehaviour:
   - {fileID: 926388293}
   - {fileID: 1091632716}
   SpawnIntervals: 5
-  target: {fileID: 0}
 --- !u!1 &762170558
 GameObject:
   m_ObjectHideFlags: 0
@@ -3227,7 +3226,7 @@ GameObject:
   - component: {fileID: 1250316992}
   m_Layer: 0
   m_Name: LightHouse
-  m_TagString: LightHouse
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4492,9 +4491,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1927580839}
+  - component: {fileID: 1927580840}
   m_Layer: 0
   m_Name: TargetDestination
-  m_TagString: Untagged
+  m_TagString: LightHouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4508,12 +4508,25 @@ Transform:
   m_GameObject: {fileID: 1927580838}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 562, y: 0.000030517578, z: 521}
+  m_LocalPosition: {x: 564, y: 13, z: 521}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1927580840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927580838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c3a3ab74c785c4fa662a44062ee9a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetectionRing: 170.7
 --- !u!1 &2013014124
 GameObject:
   m_ObjectHideFlags: 0

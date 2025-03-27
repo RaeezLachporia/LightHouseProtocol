@@ -8,7 +8,7 @@ public class WaveGenV1 : MonoBehaviour
     public GameObject enemyPrefab;
     public Transform[] spawnPoints;
     public float SpawnIntervals = 5f;
-    public Transform target;
+    //public Transform target;
     // Start is called before the first frame update
     void Start()
     {
