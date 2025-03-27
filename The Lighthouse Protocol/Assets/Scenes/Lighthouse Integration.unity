@@ -2341,7 +2341,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734522567}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a42addbc50a301e4f9924d92197deb93, type: 3}
   m_Name: 
@@ -3116,7 +3116,7 @@ Transform:
   m_GameObject: {fileID: 926388292}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1907, y: 22, z: 39}
+  m_LocalPosition: {x: 131, y: 0, z: 245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3494,7 +3494,7 @@ Transform:
   m_GameObject: {fileID: 1091632715}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1907, y: 22, z: -817}
+  m_LocalPosition: {x: -45.6, y: 0, z: 59.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3821,8 +3821,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnergy: 1000
   currentEnergy: 1000
-  minDomeRadius: 3
-  maxDomeRadius: 5
+  minDomeRadius: 10
+  maxDomeRadius: 15
   Dome: {fileID: 864693153}
   damagePerSecond: 10
   energyDrainPerSecond: 5
@@ -4169,7 +4169,7 @@ Transform:
   m_GameObject: {fileID: 1388568473}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1907, y: 32, z: 2015}
+  m_LocalPosition: {x: 119.8, y: 0, z: 58.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
