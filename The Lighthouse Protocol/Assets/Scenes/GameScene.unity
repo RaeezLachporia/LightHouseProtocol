@@ -2331,6 +2331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 734522568}
+  - component: {fileID: 734522569}
   m_Layer: 0
   m_Name: SpawnHandler
   m_TagString: Untagged
@@ -2353,6 +2354,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &734522569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734522567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54468a70a8296354eaff4c35b5882240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8332877607137805964, guid: 896f24d26ae9204439c70881c16ac324, type: 3}
+  spawnPoints:
+  - {fileID: 1388568474}
+  - {fileID: 926388293}
+  - {fileID: 1091632716}
+  archerInterval: 3.5
 --- !u!1 &762170558
 GameObject:
   m_ObjectHideFlags: 0
