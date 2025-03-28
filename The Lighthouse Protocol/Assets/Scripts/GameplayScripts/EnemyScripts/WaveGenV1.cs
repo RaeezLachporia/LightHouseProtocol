@@ -32,8 +32,9 @@ public class WaveGenV1 : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if (enemyPrefab == null || spawnPoints.Length==null)
+        if (enemyPrefab == null || spawnPoints.Length==0)
         {
+            Debug.Log("Enemies prefab is missing ");
             return;
         }
 
