@@ -7,11 +7,14 @@ using UnityEngine.SceneManagement;
 public class PauseMenu1 : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public GameObject UpgrademenuUI;
+    public GameObject MainUI;
     private bool isPaused = false;
     // Start is called before the first frame update
     void Start()
     {
         pauseMenuUI.SetActive(false);
+        UpgrademenuUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -50,4 +53,19 @@ public class PauseMenu1 : MonoBehaviour
         Debug.Log("Quitting game");
         SceneManager.LoadScene(2);
     }
+
+    public void OpenUpgrades()
+    {
+        Time.timeScale = 0f;
+        MainUI.SetActive(false);
+        UpgrademenuUI.SetActive(true);
+    }
+
+    public void CloseUpgrade()
+    {
+        Time.timeScale = 1f;
+        UpgrademenuUI.SetActive(false);
+        MainUI.SetActive(true);
+    }
+       
 }

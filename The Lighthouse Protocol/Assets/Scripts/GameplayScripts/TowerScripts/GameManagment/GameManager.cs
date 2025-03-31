@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public int startingMoney = 500;
-    public int currentMoney;
+    [SerializeField] public int currentMoney;
     private void Awake()
     {
         if (Instance == null)

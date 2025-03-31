@@ -1608,7 +1608,7 @@ GameObject:
   - component: {fileID: 402931084}
   - component: {fileID: 402931083}
   m_Layer: 5
-  m_Name: Update
+  m_Name: Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1677,7 +1677,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 402931084}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 493589447}
+        m_TargetAssemblyTypeName: PauseMenu1, Assembly-CSharp
+        m_MethodName: OpenUpgrades
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &402931084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1861,6 +1873,7 @@ GameObject:
   - component: {fileID: 475378222}
   - component: {fileID: 475378224}
   - component: {fileID: 475378223}
+  - component: {fileID: 475378225}
   m_Layer: 5
   m_Name: UpgradeMenu
   m_TagString: Untagged
@@ -1888,7 +1901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &475378223
@@ -1929,6 +1942,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475378221}
   m_CullTransparentMesh: 1
+--- !u!114 &475378225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475378221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d025d986f83a549a0084599d9c4008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1120263860}
+  UpgrademenuUI: {fileID: 475378221}
+  MainUI: {fileID: 493589440}
 --- !u!1 &493589440
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,6 +2089,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1120263860}
+  UpgrademenuUI: {fileID: 475378221}
+  MainUI: {fileID: 493589440}
 --- !u!1 &591567391
 GameObject:
   m_ObjectHideFlags: 0
@@ -2387,7 +2417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gatling Lv.1
+  m_text: Gatling Lv.2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5401,7 +5431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Laser Lv.1
+  m_text: Laser Lv.2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5806,7 +5836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 436, y: -308}
+  m_AnchoredPosition: {x: 436, y: -255}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1897641069
@@ -5852,7 +5882,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1897641070}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 493589447}
+        m_TargetAssemblyTypeName: PauseMenu1, Assembly-CSharp
+        m_MethodName: CloseUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1897641070
 MonoBehaviour:
   m_ObjectHideFlags: 0
