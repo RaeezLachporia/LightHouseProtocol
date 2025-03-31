@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 0.3433962, g: 0.3433962, b: 0.3433962, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.03
   m_LinearFogStart: 0
@@ -857,6 +857,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2381091281900113440, guid: 7221b67e84d562645b1c2715aa4c5eb9, type: 3}
+      propertyPath: far clip plane
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 2876586460314697277, guid: 7221b67e84d562645b1c2715aa4c5eb9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26.72
@@ -1664,6 +1668,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1120263860}
+  UpgrademenuUI: {fileID: 0}
+  MainUI: {fileID: 0}
 --- !u!1 &518443390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,7 +1845,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &561888898
 MonoBehaviour:
@@ -2318,7 +2324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &734522568
 Transform:
   m_ObjectHideFlags: 0
@@ -2346,7 +2352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42addbc50a301e4f9924d92197deb93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8332877607137805964, guid: 896f24d26ae9204439c70881c16ac324, type: 3}
+  enemyPrefab: {fileID: 8332877607137805964, guid: a92cf0d1be2347545948c230c33dfcac, type: 3}
   spawnPoints:
   - {fileID: 1388568474}
   - {fileID: 926388293}
@@ -3116,7 +3122,7 @@ Transform:
   m_GameObject: {fileID: 926388292}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 131, y: 0, z: 245}
+  m_LocalPosition: {x: 131, y: 0, z: 231.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3781,7 +3787,7 @@ Transform:
   m_GameObject: {fileID: 1211482191}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 141.6, y: 0, z: 36.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4853,7 +4859,7 @@ Transform:
   m_GameObject: {fileID: 1780701305}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 48.8, y: 119.2, z: -84.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
