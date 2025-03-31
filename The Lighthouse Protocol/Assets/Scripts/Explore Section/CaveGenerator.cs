@@ -39,6 +39,8 @@ public class CaveGenerator : MonoBehaviour
 
     void GenerateCave()
     {
+        
+
         map = new int[width, depth, height];
         RandomFillMap();
 
@@ -192,6 +194,19 @@ public class CaveGenerator : MonoBehaviour
                         GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
                         wall.transform.position = pos;
                         wall.transform.localScale = Vector3.one;
+
+                        //////////////////////////////////////// Occlusion
+
+                        Renderer renderer = wall.GetComponent<Renderer>();
+                        if (renderer != null)
+                        {
+                            renderer.allowOcclusionWhenDynamic = true; // Ensures it gets occluded
+                        }
+
+                        // Set walls as static for better performance
+                        wall.isStatic = true;
+
+
                     }
                 }
             }
