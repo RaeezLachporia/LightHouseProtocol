@@ -100,12 +100,12 @@ public class TowerPlacementScripts : MonoBehaviour
         {
             if (col.CompareTag("PlacementLayer"))
             {
-                return false;
+                return true;
             }
-            /*if (col.CompareTag("Tower"))
+            if (col.CompareTag("Tower"))
             {
                 return false;
-            }*/
+            }
 
         }
         return true;
@@ -119,6 +119,8 @@ public class TowerPlacementScripts : MonoBehaviour
         if (GameManager.Instance.moneySpending(towerCost))
         {
             RaycastHit hit;
+            Vector3 rayStart = position + Vector3.up * 5f;
+            //Debug.DrawRay(rayStart)
             if (Physics.Raycast(position + Vector3.up * 5f, Vector3.down, out hit, 10f, placementLayer))
             {
                 float towerHeight = towerPrefabs[TowerIndex].GetComponentInChildren<Renderer>().bounds.size.y;

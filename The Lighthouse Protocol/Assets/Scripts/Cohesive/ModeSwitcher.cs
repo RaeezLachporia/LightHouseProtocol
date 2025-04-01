@@ -5,6 +5,8 @@ public class ModeSwitcher : MonoBehaviour
     public GameObject player; // Assign the First-Person Player GameObject
     public Camera mainCamera; // Assign the Top-Down Camera
     private GameObject uiSystem; // Store the UI reference
+    public GameObject ThirdPersonUI;
+    public GameObject FirstPersonUI;
 
     private bool isInFirstPerson = false;
 
@@ -60,7 +62,8 @@ public class ModeSwitcher : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false; // Hide cursor in first-person
-
+            ThirdPersonUI.SetActive(false);
+            FirstPersonUI.SetActive(true);
             Debug.Log("Switched to First-Person Mode");
         }
         else
@@ -77,7 +80,8 @@ public class ModeSwitcher : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true; // Show cursor in top-down
-
+            FirstPersonUI.SetActive(false);
+            ThirdPersonUI.SetActive(true);
             Debug.Log("Switched to Top-Down Mode");
         }
     }
