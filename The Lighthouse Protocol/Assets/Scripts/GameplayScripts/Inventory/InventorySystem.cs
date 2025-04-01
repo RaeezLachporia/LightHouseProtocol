@@ -22,6 +22,8 @@ public class InventorySystem : MonoBehaviour
     public List<ItemPrefab> itemPrefabs;
     private Dictionary<string, GameObject> prefabLookup = new Dictionary<string, GameObject>();
 
+    public GameObject resourcePrefab;
+
     void Start()
     {
         playerCamera = Camera.main;

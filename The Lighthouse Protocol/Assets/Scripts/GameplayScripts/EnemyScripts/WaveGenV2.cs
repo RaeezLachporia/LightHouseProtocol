@@ -4,29 +4,22 @@ using UnityEngine;
 
 public class WaveGenV2 : MonoBehaviour
 {
-
     [SerializeField] private GameObject enemyPrefab;
     public Transform[] spawnPoints;
-    // [SerializeField] private GameObject EnemyType2;
-    // [SerializeField] private GameObject EnemyType3;
-
     [SerializeField] private float archerInterval = 3.5f;
-   // [SerializeField] private float assassinInterval = 3.5f;
-   // [SerializeField] private float bruteInterval = 3.5f;
-
 
     void Start()
     {
-        StartCoroutine(spawnEnemy(archerInterval, enemyPrefab));
-       // StartCoroutine(spawnEnemy(assassinInterval, EnemyType2));
-       // StartCoroutine(spawnEnemy(bruteInterval, EnemyType3));
+        StartCoroutine(SpawnEnemyLoop(archerInterval, enemyPrefab));
     }
 
-    private IEnumerator spawnEnemy(float interval, GameObject enemy)// 
+    private IEnumerator SpawnEnemyLoop(float interval, GameObject enemy)
     {
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        yield return new WaitForSeconds(interval);
-        GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);//spawns enemies 
-        StartCoroutine(spawnEnemy(interval, enemy));
+        while (true) //Keeps running without recursion
+        {
+            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            Instantiate(enemy, spawnPoint.position, Quaternion.identity);
+            yield return new WaitForSeconds(interval); //Wait before spawning again
+        }
     }
 }

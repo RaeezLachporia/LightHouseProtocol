@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Collections.Generic;
 
 public class FirstPersonController : MonoBehaviour
 {
@@ -39,8 +41,21 @@ public class FirstPersonController : MonoBehaviour
     public Slider staminaBar;
     public Slider healthBar;
 
+    public TextMeshProUGUI collectedResourcesText;
+
     void Start()
     {
+
+        if (collectedResourcesText == null)
+        {
+            GameObject textObject = GameObject.Find("CollectedResourcesText");
+            if (textObject != null)
+            {
+                collectedResourcesText = textObject.GetComponent<TextMeshProUGUI>();
+            }
+        }
+        UpdateCollectedResourcesUI();
+
         controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
@@ -135,6 +150,8 @@ public class FirstPersonController : MonoBehaviour
         if (healthBar != null) healthBar.value = currentHealth;
 
         HandleCrouch();
+
+        UpdateCollectedResourcesUI();
     }
 
     void HandleCrouch()
@@ -174,6 +191,19 @@ public class FirstPersonController : MonoBehaviour
         if (fillImage != null)
         {
             fillImage.color = color;
+        }
+    }
+
+    public void UpdateCollectedResourcesUI()
+    {
+        if (collectedResourcesText == null) return;
+
+        Dictionary<string, int> resources = CollectionPoint.GetCollectedResources();
+        collectedResourcesText.text = "Collected:\n";
+
+        foreach (var resource in resources)
+        {
+            collectedResourcesText.text += $"{resource.Key}: {resource.Value}\n";
         }
     }
 }
