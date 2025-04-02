@@ -95,10 +95,10 @@ public class TowerPlacementScripts : MonoBehaviour
 
     private bool IsvalidPlacement(Vector3 position)
     {
-        Collider[] colliders = Physics.OverlapSphere(position, gridSize / 2f,placementLayer);
+        Collider[] colliders = Physics.OverlapSphere(position, gridSize / 2f);
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("placementLayer"))
+            if (col.CompareTag("PlacementLayer"))
             {
                 return true;
             }
