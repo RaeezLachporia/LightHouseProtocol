@@ -6210,13 +6210,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointPrefab: {fileID: 4287186215635288569, guid: eefb753cfc7108c48b555952dbcbd164, type: 3}
-  maxWaypoints: 10
+  maxWaypoints: 20
   minSpacing: 5
   caveLayer:
     serializedVersion: 2
     m_Bits: 1
-  caveBoundsMin: {x: 0, y: 0, z: 0}
-  caveBoundsMax: {x: 0, y: 0, z: 0}
+  caveBoundsMin: {x: 49, y: 3, z: 49}
+  caveBoundsMax: {x: -50, y: 3, z: -50}
 --- !u!4 &1988456930
 Transform:
   m_ObjectHideFlags: 0

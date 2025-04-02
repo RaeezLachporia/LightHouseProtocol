@@ -232,17 +232,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eyes: {fileID: 1739167413931744866}
+  roamSpeed: 2
+  chaseSpeed: 5
   detectionRange: 10
-  roamingSpeed: 2
-  attackSpeed: 5
-  searchDuration: 5
-  sightLostTime: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  lostSightTime: 3
+  obstacleAvoidanceRange: 3
+  obstacleAvoidanceStrength: 3
 --- !u!195 &697423905177620499
 NavMeshAgent:
   m_ObjectHideFlags: 0
