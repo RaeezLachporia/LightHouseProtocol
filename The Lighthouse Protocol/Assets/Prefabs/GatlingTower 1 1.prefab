@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1117899949138544837}
   - component: {fileID: 3437547929082722177}
   - component: {fileID: 8677026680116531362}
+  - component: {fileID: 4179079854966444577}
   m_Layer: 0
   m_Name: GatlingTower 1 1
   m_TagString: Tower
@@ -124,6 +125,24 @@ MonoBehaviour:
   GatlingProjectile: {fileID: 82700097751506767, guid: b0a561e70e1792b4ab36e9208ccd27da, type: 3}
   shootPoint: {fileID: 8529022485049280875}
   enemyTag: Enemy
+--- !u!114 &4179079854966444577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251844597986043486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde196734dd776a43ae6460f0eb9481f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Level: 1
+  ProjectileDamage: 0
+  DetectionRange: 0
+  FireRate: 0
+  upgradeCost: 50
+  gamemanager: {fileID: 0}
 --- !u!1 &7326260659165208203
 GameObject:
   m_ObjectHideFlags: 0

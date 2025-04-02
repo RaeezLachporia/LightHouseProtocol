@@ -50,4 +50,22 @@ public class GameManager : MonoBehaviour
     {
         return currentMoney;
     }
+
+    public void AttemptUpgrade(GameObject tower)
+    {
+        TowerUpgrades towerUpgrades = tower.GetComponent<TowerUpgrades>();
+        if (towerUpgrades != null )
+        {
+            if (currentMoney>= towerUpgrades.upgradeCost)
+            {
+                currentMoney -= towerUpgrades.upgradeCost;
+                towerUpgrades.UpgradeTower();
+                Debug.Log("TowerUpgraded");
+            }
+            else
+            {
+                Debug.Log("Tower Not Upgraded");
+            }
+        }
+    }
 }

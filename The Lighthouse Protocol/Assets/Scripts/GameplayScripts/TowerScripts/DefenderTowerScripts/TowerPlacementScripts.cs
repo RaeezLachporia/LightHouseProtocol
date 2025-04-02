@@ -98,7 +98,7 @@ public class TowerPlacementScripts : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(position, gridSize / 2f);
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("PlacementLayer"))
+            if (col.CompareTag("placementLayer"))
             {
                 return true;
             }
