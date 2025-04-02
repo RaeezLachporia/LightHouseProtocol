@@ -12,8 +12,8 @@ public class TowerShooting : MonoBehaviour
     public string enemyTag = "Enemy";
     private Transform enemyTarget;
     private float cooldown = 0f;
-    //private int upgradeLevel = 0;
-    //private Dictionary<int, Dictionary<string, int>> upgradeCost = new Dictionary<int, Dictionary<string, int>>();
+    private int upgradeLevel = 0;
+    private Dictionary<int, Dictionary<string, int>> upgradeCost = new Dictionary<int, Dictionary<string, int>>();
     void Start()
     {
         
@@ -84,7 +84,7 @@ public class TowerShooting : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, twrRange);
     }
 
-   /* private void UpgradeCosts()
+    private void UpgradeCosts()
     {
         upgradeCost[0] = new Dictionary<string, int> { { "Wood", 10 }, { "Metal", 5 } };
     }
@@ -96,9 +96,9 @@ public class TowerShooting : MonoBehaviour
             return upgradeCost[upgradeLevel];
         }
         return null;
-    }*/
+    }
 
-   /* public bool UpgradeTower()
+    public bool UpgradeTower()
     {
         if (!upgradeCost.ContainsKey(upgradeLevel)) return false;
         Dictionary<string, int> cost = upgradeCost[upgradeLevel];
@@ -116,5 +116,5 @@ public class TowerShooting : MonoBehaviour
         twrRange += 2f;
         fireRate += 20f;
         Debug.Log("Tower upgrades" + upgradeLevel);
-    }*/
+    }
 }
