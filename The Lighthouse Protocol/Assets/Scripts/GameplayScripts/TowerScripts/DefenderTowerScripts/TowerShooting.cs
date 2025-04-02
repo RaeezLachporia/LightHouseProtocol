@@ -117,4 +117,24 @@ public class TowerShooting : MonoBehaviour
         fireRate += 20f;
         Debug.Log("Tower upgrades" + upgradeLevel);
     }
+
+    public void UpgradeGatlingTowers()
+    {
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+        foreach (GameObject tower in towers)
+        {
+            TowerShooting towerUpgradeScript = tower.GetComponent<TowerShooting>();
+            if (towerUpgradeScript != null)
+            {
+                if (towerUpgradeScript.UpgradeTower())
+                {
+                    Debug.Log("Upgraded tower " + tower.name);
+                }
+                else
+                {
+                    Debug.Log("not enough resources to upgrade  " + tower.name);
+                }
+            }
+        }
+    }
 }

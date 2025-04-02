@@ -1874,6 +1874,7 @@ GameObject:
   - component: {fileID: 475378224}
   - component: {fileID: 475378223}
   - component: {fileID: 475378225}
+  - component: {fileID: 475378226}
   m_Layer: 5
   m_Name: UpgradeMenu
   m_TagString: Untagged
@@ -1957,6 +1958,23 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 1120263860}
   UpgrademenuUI: {fileID: 475378221}
   MainUI: {fileID: 493589440}
+--- !u!114 &475378226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475378221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5b5efd992b1c94da682607dfba2a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  twrRange: 10
+  fireRate: 1
+  GatlingProjectile: {fileID: 0}
+  shootPoint: {fileID: 0}
+  enemyTag: Enemy
 --- !u!1 &493589440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3360,9 +3378,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1502583051}
-        m_TargetAssemblyTypeName: TowerUpgrades, Assembly-CSharp
-        m_MethodName: UpgradeTower
+      - m_Target: {fileID: 475378226}
+        m_TargetAssemblyTypeName: TowerShooting, Assembly-CSharp
+        m_MethodName: UpgradeGatlingTowers
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
