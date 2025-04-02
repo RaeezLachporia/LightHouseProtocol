@@ -16,7 +16,7 @@ public class TowerShooting : MonoBehaviour
     private Dictionary<int, Dictionary<string, int>> upgradeCost = new Dictionary<int, Dictionary<string, int>>();
     void Start()
     {
-        
+        UpgradeCosts();
     }
 
     // Update is called once per frame
@@ -113,7 +113,7 @@ public class TowerShooting : MonoBehaviour
     private void ConfirmUpgrade()
     {
         upgradeLevel++;
-        twrRange += 2f;
+        twrRange += 20f;
         fireRate += 20f;
         Debug.Log("Tower upgrades" + upgradeLevel);
     }
