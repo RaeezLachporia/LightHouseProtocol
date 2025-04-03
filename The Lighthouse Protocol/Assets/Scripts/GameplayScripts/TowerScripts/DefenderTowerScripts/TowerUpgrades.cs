@@ -11,7 +11,8 @@ public class TowerUpgrades : MonoBehaviour
     public float ProjectileDamage;
     public float DetectionRange;
     public float FireRate;
-    public int upgradeCost = 50;
+    public int TowerHealth;
+    //public int upgradeCost = 50;
 
     [Header("References to other scripts")]
     public GameManager gamemanager = new GameManager();
@@ -37,7 +38,7 @@ public class TowerUpgrades : MonoBehaviour
         FireRate += 3f;
     }
 
-    public bool isUpgradable(int playerMoney)
+    /*public bool isUpgradable(int playerMoney)
     {
         playerMoney = gamemanager.currentMoney;
         if (playerMoney >= upgradeCost)
@@ -47,5 +48,5 @@ public class TowerUpgrades : MonoBehaviour
         }
         return false;
         Debug.Log("You dont have enough money to upggrade");
-    }
+    }*///redundant was used for testing purposes 
 }

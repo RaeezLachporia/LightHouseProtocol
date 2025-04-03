@@ -56,8 +56,6 @@ public class InventoryManager : MonoBehaviour
         {
             if (!inventoryResources.ContainsKey(item.Key) || inventoryResources[item.Key]<item.Value)
                 return false;
-                
-            
         }
         return true;
     }

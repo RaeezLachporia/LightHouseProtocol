@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class TowerShooting : MonoBehaviour
 {
     public float twrRange = 10f;//range till tower detects enemy
     public float fireRate = 1f;//rate of fire for the tower
+    public float TwrHealth = 100;//Health of the tower
+    public float currentTwrHealth;
+    public Slider TwrHealthSlider;
     public GameObject GatlingProjectile;//prefab of the projectile for the specific tower
     public Transform shootPoint;//point where the projectile is fired from 
     //public LayerMask enemyLayer; // only detects objects labeled as enemy
@@ -16,6 +19,9 @@ public class TowerShooting : MonoBehaviour
     private Dictionary<int, Dictionary<string, int>> upgradeCost = new Dictionary<int, Dictionary<string, int>>();
     void Start()
     {
+        currentTwrHealth = TwrHealth; ;
+        TwrHealthSlider.maxValue = TwrHealth;
+        TwrHealthSlider.value = TwrHealth;
         UpgradeCosts();
     }
 
@@ -119,6 +125,7 @@ public class TowerShooting : MonoBehaviour
         upgradeLevel++;
         twrRange += 20f;
         fireRate += 20f;
+        TwrHealth += 100f;
         Debug.Log("Tower upgrades" + upgradeLevel);
     }
 
@@ -140,6 +147,15 @@ public class TowerShooting : MonoBehaviour
                     Debug.Log("not enough resources to upgrade  " + tower.name);
                 }
             }
+        }
+    }
+    public void TakeDamage(float amount)
+    {
+        TwrHealth -= amount;
+        TwrHealthSlider.value = currentTwrHealth;
+        if (currentTwrHealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
