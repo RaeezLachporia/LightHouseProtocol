@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class InventoryManager : MonoBehaviour
 {
-
+    public static InventoryManager Instance { get; private set; }
     public static Dictionary<string, int> inventoryResources = new Dictionary<string, int>();
     public Transform inventoryPanel;
     public GameObject ItemPrefab;
@@ -14,6 +14,7 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         invetoryCnavas.active = false;
         inventoryResources["Wood"] = 10;
         inventoryResources["Metal"] = 10;
@@ -71,9 +72,10 @@ public class InventoryManager : MonoBehaviour
                     inventoryResources.Remove(item.Key);
             }
         }
+        Instance.UpdateInventoryUI();
     }
 
-    void UpdateInventoryUI()
+    public void UpdateInventoryUI()
     {
         
         if (inventoryPanel == null)

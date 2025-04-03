@@ -109,6 +109,7 @@ public class TowerShooting : MonoBehaviour
         {
             InventoryManager.UseResources(cost);
             ConfirmUpgrade();
+            InventoryManager.Instance.UpdateInventoryUI();
             return true;
         }
         return false;
