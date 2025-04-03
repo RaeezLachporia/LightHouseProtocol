@@ -191,20 +191,7 @@ public class TowerPlacementScripts : MonoBehaviour
         return null;
     }
 
-    public void SelctedTowerForUpgrade()
-    {
-        Ray raycast = cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        Debug.DrawRay(raycast.origin, raycast.direction * 100f, Color.red, 1f);
-        if (Physics.Raycast(raycast, out hit, Mathf.Infinity))
-        {
-            if (hit.collider.CompareTag("Tower") || hit.collider.CompareTag("LaserTower"))
-            {
-                selectedTower = hit.collider.gameObject;
-                Debug.Log("Selected tower for upgrade:" + selectedTower.name);
-            }
-        }
-    }
+    
 
 
 

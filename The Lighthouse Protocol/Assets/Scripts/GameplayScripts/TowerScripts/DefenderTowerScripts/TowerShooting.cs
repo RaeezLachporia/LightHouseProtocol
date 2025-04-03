@@ -87,9 +87,11 @@ public class TowerShooting : MonoBehaviour
     private void UpgradeCosts()
     {
         upgradeCost[0] = new Dictionary<string, int> { { "Wood", 10 }, { "Metal", 5 } };
+        upgradeCost[1] = new Dictionary<string, int> { { "Wood", 20 }, { "Metal", 10 } };
+        upgradeCost[2] = new Dictionary<string, int> { { "Wood", 40 }, { "Metal", 20 } };
     }
     
-    public Dictionary<string, int> GetUpgradeCost()
+    public Dictionary<string, int> GetupgradeCost()
     {
         if (upgradeCost.ContainsKey(upgradeLevel))
         {
@@ -102,6 +104,7 @@ public class TowerShooting : MonoBehaviour
     {
         if (!upgradeCost.ContainsKey(upgradeLevel)) return false;
         Dictionary<string, int> cost = upgradeCost[upgradeLevel];
+        //Debug.Log("Current Inventory: " + InventoryManager);
         if (InventoryManager.HasRequiredResources(cost))
         {
             InventoryManager.UseResources(cost);
@@ -128,6 +131,7 @@ public class TowerShooting : MonoBehaviour
             {
                 if (towerUpgradeScript.UpgradeTower())
                 {
+                    ConfirmUpgrade();
                     Debug.Log("Upgraded tower " + tower.name);
                 }
                 else

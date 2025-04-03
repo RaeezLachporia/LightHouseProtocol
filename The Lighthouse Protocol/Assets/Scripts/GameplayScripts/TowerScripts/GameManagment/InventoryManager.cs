@@ -16,8 +16,8 @@ public class InventoryManager : MonoBehaviour
     {
         invetoryCnavas.active = false;
         inventoryResources["Wood"] = 10;
-        inventoryResources["metal"] = 10;
-        inventoryResources["platic"] = 50;
+        inventoryResources["Metal"] = 10;
+        inventoryResources["Platic"] = 50;
         LoadCollectedResources();
         UpdateInventoryUI();
     }
@@ -36,6 +36,7 @@ public class InventoryManager : MonoBehaviour
         Dictionary<string, int> collectedResources = CollectionPoint.GetCollectedResources();
         foreach (var item in collectedResources)
         {
+            Debug.Log($"Adding {item.Key}: {item.Value} to inventory");
             if (inventoryResources.ContainsKey(item.Key))
             {
                 inventoryResources[item.Key] += item.Value;
@@ -74,7 +75,7 @@ public class InventoryManager : MonoBehaviour
 
     void UpdateInventoryUI()
     {
-        // Check if inventoryPanel is assigned
+        
         if (inventoryPanel == null)
         {
             Debug.LogError("Inventory Panel is not assigned in the Inspector!");
@@ -136,4 +137,5 @@ public class InventoryManager : MonoBehaviour
     {
         invetoryCnavas.SetActive(!invetoryCnavas.activeSelf);
     }
+   
 }
