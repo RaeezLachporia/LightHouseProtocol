@@ -21,7 +21,7 @@ public class TowerShooting : MonoBehaviour
     {
         currentTwrHealth = TwrHealth; ;
         TwrHealthSlider.maxValue = TwrHealth;
-        TwrHealthSlider.value = TwrHealth;
+        TwrHealthSlider.value = currentTwrHealth;
         UpgradeCosts();
     }
 
@@ -40,6 +40,7 @@ public class TowerShooting : MonoBehaviour
             }
         }
         cooldown -= Time.deltaTime;
+        
     }
 
     private Transform detectClosestEnemy()
@@ -149,13 +150,23 @@ public class TowerShooting : MonoBehaviour
             }
         }
     }
-    public void TakeDamage(float amount)
+    public void TowerTakeDamage(float amount)
     {
-        TwrHealth -= amount;
+        currentTwrHealth -= amount;
         TwrHealthSlider.value = currentTwrHealth;
         if (currentTwrHealth <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            new WaitForSeconds(10f);
+            TowerTakeDamage(10f * Time.deltaTime);
+            Debug.Log("Tower is taking damage");
         }
     }
 }
