@@ -916,10 +916,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3263220438565556489, guid: 896f24d26ae9204439c70881c16ac324, type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3263220438565556489, guid: 896f24d26ae9204439c70881c16ac324, type: 3}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
@@ -3051,10 +3047,6 @@ PrefabInstance:
     - target: {fileID: 430585948327832572, guid: 505310aaebd9fee40837336c73013344, type: 3}
       propertyPath: m_Name
       value: GatlingTower 1 1 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 430585948327832572, guid: 505310aaebd9fee40837336c73013344, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 612511444199480408, guid: 505310aaebd9fee40837336c73013344, type: 3}
       propertyPath: m_IsTrigger
