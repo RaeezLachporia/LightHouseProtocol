@@ -42,7 +42,7 @@ public class FirstPersonController : MonoBehaviour
     public Slider healthBar;
 
     public TextMeshProUGUI collectedResourcesText;
-
+    public GameObject PauseMenu;
     void Start()
     {
 
@@ -204,6 +204,14 @@ public class FirstPersonController : MonoBehaviour
         foreach (var resource in resources)
         {
             collectedResourcesText.text += $"{resource.Key}: {resource.Value}\n";
+        }
+    }
+
+    public void EnterPauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseMenu.SetActive(true);
         }
     }
 }
