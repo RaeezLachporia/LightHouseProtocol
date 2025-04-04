@@ -64,9 +64,9 @@ public class LightHouseScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
-       /* if (other.CompareTag("Enemy") && currentEnergy > 0)
+       *//* if (other.CompareTag("Enemy") && currentEnergy > 0)
         {
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
@@ -77,12 +77,12 @@ public class LightHouseScript : MonoBehaviour
             // Drain energy
             currentEnergy -= energyDrainPerSecond;
             currentEnergy = Mathf.Max(0, currentEnergy);
-        }*/
+        }*//*
     }
 
     private void OnTriggerStay(Collider other)
     {
-       /* if (other.CompareTag("Enemy") && currentEnergy > 0)
+       *//* if (other.CompareTag("Enemy") && currentEnergy > 0)
         {
             // Prevent the enemy from moving forward by pushing it back
             Rigidbody enemyRb = other.GetComponent<Rigidbody>();
@@ -91,8 +91,8 @@ public class LightHouseScript : MonoBehaviour
                 Vector3 pushDirection = (other.transform.position - transform.position).normalized;
                 enemyRb.AddForce(pushDirection * 10f, ForceMode.Force);
             }
-        }*/
-    }
+        }*//*
+    }*/
 }
 
 
