@@ -40,22 +40,15 @@ public class FirstPersonController : MonoBehaviour
     // UI References
     public Slider staminaBar;
     public Slider healthBar;
-
     public TextMeshProUGUI collectedResourcesText;
+    public TextMeshProUGUI holdingResourcesText; // NEW UI for held resources
     public GameObject PauseMenu;
+
+    // Resource Tracking
+    private Dictionary<string, int> heldResources = new Dictionary<string, int>(); // NEW
+
     void Start()
     {
-
-        if (collectedResourcesText == null)
-        {
-            GameObject textObject = GameObject.Find("CollectedResourcesText");
-            if (textObject != null)
-            {
-                collectedResourcesText = textObject.GetComponent<TextMeshProUGUI>();
-            }
-        }
-        UpdateCollectedResourcesUI();
-
         controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
@@ -63,26 +56,16 @@ public class FirstPersonController : MonoBehaviour
         currentStamina = maxStamina;
         currentHealth = maxHealth;
 
-        // Find UI sliders if not assigned
-        if (staminaBar == null)
-        {
-            GameObject barObject = GameObject.Find("StaminaBar");
-            if (barObject != null)
-            {
-                staminaBar = barObject.GetComponent<Slider>();
-            }
-        }
+        // Find UI elements if not assigned
+        if (collectedResourcesText == null)
+            collectedResourcesText = GameObject.Find("CollectedResourcesText")?.GetComponent<TextMeshProUGUI>();
 
-        if (healthBar == null)
-        {
-            GameObject healthObject = GameObject.Find("HealthBar");
-            if (healthObject != null)
-            {
-                healthBar = healthObject.GetComponent<Slider>();
-            }
-        }
+        if (holdingResourcesText == null) // NEW: Assign Holding UI
+            holdingResourcesText = GameObject.Find("HoldingResourcesText")?.GetComponent<TextMeshProUGUI>();
 
-        // Initialize UI bars
+        UpdateCollectedResourcesUI();
+        UpdateHoldingResourcesUI(); // NEW
+
         if (staminaBar != null)
         {
             staminaBar.maxValue = maxStamina;
@@ -102,15 +85,12 @@ public class FirstPersonController : MonoBehaviour
     {
         isGrounded = controller.isGrounded;
         if (isGrounded && velocity.y < 0)
-        {
             velocity.y = -2f;
-        }
 
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
-
         bool isSprinting = Input.GetKey(KeyCode.LeftShift) && currentStamina > 0 && !isCrouching;
         float speed = isSprinting ? runSpeed : (isCrouching ? crouchSpeed : walkSpeed);
 
@@ -151,19 +131,21 @@ public class FirstPersonController : MonoBehaviour
 
         HandleCrouch();
 
+        if (Input.GetKeyDown(KeyCode.E))
+            PickupResource("Metal"); // Example pickup
+
+        if (Input.GetKeyDown(KeyCode.G))
+            DropResource("Metal"); // Example drop
+
         UpdateCollectedResourcesUI();
     }
 
     void HandleCrouch()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
             Crouch();
-        }
         else if (Input.GetKeyUp(KeyCode.LeftControl))
-        {
             StandUp();
-        }
     }
 
     void Crouch()
@@ -184,16 +166,14 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    // Helper Function to Change Slider Fill Color
     void ChangeSliderColor(Slider slider, Color color)
     {
         Image fillImage = slider.fillRect.GetComponent<Image>();
         if (fillImage != null)
-        {
             fillImage.color = color;
-        }
     }
 
+    // Update the UI for collected resources
     public void UpdateCollectedResourcesUI()
     {
         if (collectedResourcesText == null) return;
@@ -202,16 +182,53 @@ public class FirstPersonController : MonoBehaviour
         collectedResourcesText.text = "Collected:\n";
 
         foreach (var resource in resources)
-        {
             collectedResourcesText.text += $"{resource.Key}: {resource.Value}\n";
+    }
+
+    // NEW: Update UI for holding resources
+    void UpdateHoldingResourcesUI()
+    {
+        if (holdingResourcesText == null) return;
+
+        if (heldResources.Count == 0)
+        {
+            holdingResourcesText.text = "Holding: None";
+        }
+        else
+        {
+            holdingResourcesText.text = "Holding:\n";
+            foreach (var item in heldResources)
+                holdingResourcesText.text += $"{item.Key}: {item.Value}\n";
+        }
+    }
+
+    // NEW: Pickup logic
+    void PickupResource(string resourceName)
+    {
+        if (!heldResources.ContainsKey(resourceName))
+            heldResources[resourceName] = 0;
+        heldResources[resourceName]++;
+
+        UpdateHoldingResourcesUI();
+    }
+
+    // NEW: Drop logic
+    void DropResource(string resourceName)
+    {
+        if (heldResources.ContainsKey(resourceName) && heldResources[resourceName] > 0)
+        {
+            heldResources[resourceName]--;
+
+            if (heldResources[resourceName] <= 0)
+                heldResources.Remove(resourceName);
+
+            UpdateHoldingResourcesUI();
         }
     }
 
     public void EnterPauseMenu()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             PauseMenu.SetActive(true);
-        }
     }
 }
