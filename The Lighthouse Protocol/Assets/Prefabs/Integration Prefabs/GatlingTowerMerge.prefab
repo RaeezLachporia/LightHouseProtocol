@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1117899949138544837}
   - component: {fileID: 3437547929082722177}
   - component: {fileID: 8677026680116531362}
+  - component: {fileID: 5191145024270381198}
   m_Layer: 0
   m_Name: GatlingTowerMerge
   m_TagString: Tower
@@ -121,9 +122,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   twrRange: 100
   fireRate: 2
+  TwrHealth: 100
+  currentTwrHealth: 0
+  TwrHealthSlider: {fileID: 0}
   GatlingProjectile: {fileID: 82700097751506767, guid: cfe1425101473d34f9860f7d8ddddd3a, type: 3}
   shootPoint: {fileID: 8529022485049280875}
   enemyTag: Enemy
+--- !u!114 &5191145024270381198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251844597986043486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde196734dd776a43ae6460f0eb9481f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Level: 1
+  ProjectileDamage: 0
+  DetectionRange: 0
+  FireRate: 0
+  TowerHealth: 0
+  gamemanager: {fileID: 0}
 --- !u!1 &7326260659165208203
 GameObject:
   m_ObjectHideFlags: 0

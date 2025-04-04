@@ -36,7 +36,11 @@ public class TowerPlacementScripts : MonoBehaviour
 
         if (currentGhostTower != null)
         {
-            currentGhostTower.transform.position = snapPos;
+            float ghostHeight = currentGhostTower.GetComponent<Renderer>().bounds.extents.y;
+            Vector3 adjustedPos = new Vector3(snapPos.x, snapPos.y + ghostHeight, snapPos.z);
+
+            currentGhostTower.transform.position = adjustedPos;
+
             currentGhostTower.GetComponent<Renderer>().material.color = IsvalidPlacement(snapPos) ? Color.green : Color.red;
         }
 
@@ -71,6 +75,8 @@ public class TowerPlacementScripts : MonoBehaviour
                 Debug.Log("Raycast didn't hit anything.");
             }
         }
+
+        
         
     }
 
@@ -98,7 +104,11 @@ public class TowerPlacementScripts : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(position, gridSize / 2f);
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("placementLayer"))
+            if (col.gameObject==currentGhostTower)
+            {
+                continue;
+            }
+            if (col.CompareTag("PlacementLayer"))
             {
                 return true;
             }

@@ -9,6 +9,9 @@ TagManager:
   - Tower
   - LaserBeam
   - LightHouse
+  - mats
+  - Waypoint
+  - Progress
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - enemy
   - Water
   - UI
-  - 
+  - PlacementLayer
   - 
   - 
   - 
