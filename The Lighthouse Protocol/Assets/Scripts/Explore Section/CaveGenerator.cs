@@ -12,6 +12,8 @@ public class CaveGenerator : MonoBehaviour
     public string seed;
     public bool useRandomSeed = true;
 
+
+
     public GameObject enemyPrefab; // Assign your Enemy prefab in the Inspector
     public int enemyCount = 2; // Number of enemies to spawn
 
@@ -181,36 +183,71 @@ public class CaveGenerator : MonoBehaviour
     void DrawCave()
     {
         Vector3 offset = new Vector3(-width / 2, 0, -height / 2);
+        int chunkSize = 16; // Adjust chunk size as needed
 
-        for (int x = 0; x < width; x++)
+        for (int cx = 0; cx < width; cx += chunkSize)
         {
-            for (int y = 0; y < depth; y++)
+            for (int cy = 0; cy < depth; cy += chunkSize)
             {
-                for (int z = 0; z < height; z++)
+                for (int cz = 0; cz < height; cz += chunkSize)
                 {
-                    Vector3 pos = new Vector3(x, y, z) + offset;
-                    if (map[x, y, z] == 1)
+                    List<CombineInstance> combineInstances = new List<CombineInstance>();
+                    Mesh cubeMesh = GameObject.CreatePrimitive(PrimitiveType.Cube).GetComponent<MeshFilter>().sharedMesh;
+
+                    for (int x = cx; x < Mathf.Min(cx + chunkSize, width); x++)
                     {
-                        GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                        wall.transform.position = pos;
-                        wall.transform.localScale = Vector3.one;
-
-                        //////////////////////////////////////// Occlusion
-
-                        Renderer renderer = wall.GetComponent<Renderer>();
-                        if (renderer != null)
+                        for (int y = cy; y < Mathf.Min(cy + chunkSize, depth); y++)
                         {
-                            renderer.allowOcclusionWhenDynamic = true; // Ensures it gets occluded
+                            for (int z = cz; z < Mathf.Min(cz + chunkSize, height); z++)
+                            {
+                                if (map[x, y, z] == 1 && !IsCompletelySurrounded(x, y, z))
+                                {
+                                    Vector3 pos = new Vector3(x, y, z) + offset;
+                                    CombineInstance instance = new CombineInstance
+                                    {
+                                        mesh = cubeMesh,
+                                        transform = Matrix4x4.TRS(pos, Quaternion.identity, Vector3.one)
+                                    };
+                                    combineInstances.Add(instance);
+                                }
+                            }
                         }
+                    }
 
-                        // Set walls as static for better performance
-                        wall.isStatic = true;
+                    if (combineInstances.Count > 0)
+                    {
+                        Mesh chunkMesh = new Mesh { indexFormat = UnityEngine.Rendering.IndexFormat.UInt32 };
+                        chunkMesh.CombineMeshes(combineInstances.ToArray(), true, true);
 
+                        GameObject chunk = new GameObject($"CaveChunk_{cx}_{cy}_{cz}");
+                        chunk.AddComponent<MeshFilter>().mesh = chunkMesh;
+                        MeshRenderer renderer = chunk.AddComponent<MeshRenderer>();
 
+                        // Assign material
+                        Material caveMaterial = Resources.Load<Material>("CaveMaterial");
+                        if (caveMaterial != null) renderer.material = caveMaterial;
+                        else Debug.LogError("CaveMaterial not found!");
+
+                        chunk.AddComponent<MeshCollider>();
+                        chunk.isStatic = true; // Enable occlusion culling for chunks
                     }
                 }
             }
         }
+    }
+
+    // Helper function with boundary checks
+    bool IsCompletelySurrounded(int x, int y, int z)
+    {
+        // Check if the cube is on the edge; if so, it’s NOT surrounded
+        if (x == 0 || x == width - 1 ||
+            y == 0 || y == depth - 1 ||
+            z == 0 || z == height - 1)
+            return false;
+
+        return map[x - 1, y, z] == 1 && map[x + 1, y, z] == 1 &&
+               map[x, y - 1, z] == 1 && map[x, y + 1, z] == 1 &&
+               map[x, y, z - 1] == 1 && map[x, y, z + 1] == 1;
     }
 
     void SpawnEnemies()
