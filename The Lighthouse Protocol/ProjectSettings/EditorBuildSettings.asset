@@ -9,12 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/Lighthouse Integration.unity
+    guid: c9227a889054fa249a0e6ecfe732537b
+  - enabled: 0
     path: Assets/Scenes/GameScene.unity
     guid: 16e1752524345e749b67f203cf8b57b4
   - enabled: 1
     path: Assets/Scenes/OptionsMenu.unity
     guid: 12da110f082ac7649ba7a39850d237c2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Explore.unity
     guid: 4d8eb0110e417344ba911e93be0cd048
   - enabled: 1

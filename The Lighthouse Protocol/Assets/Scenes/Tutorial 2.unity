@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,6 +135,7 @@ GameObject:
   - component: {fileID: 53195863}
   - component: {fileID: 53195862}
   - component: {fileID: 53195861}
+  - component: {fileID: 53195864}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -205,9 +207,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1991022659}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Back
+      - m_Target: {fileID: 53195864}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: backmenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -255,6 +257,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53195859}
   m_CullTransparentMesh: 1
+--- !u!114 &53195864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53195859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28934f53bd84ca4ca2be87fbfa8e537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &996146542
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tower Defence
+  m_text: Tower Defence with Exploration
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -691,7 +705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7, y: 119}
+  m_AnchoredPosition: {x: -7, y: 71}
   m_SizeDelta: {x: 481.36, y: 142.3077}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1566513874
@@ -714,37 +728,35 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Use W, A, S, and D to move the camera and right click to drag the frame
-    around so u can turn.
+  m_text: 'WASD - Move
 
-    Place towers by clicking on the UI of the tower u
-    want and then clicking on the road where u would like to place it. Turrets cannot
-    be placed in buildings.
 
-    The turrets will automatically target the closest
-    enemies.
+    Shift - Sprint (Uses stamina)
 
-    Enemies will automatically target the closest turret.
 
-    You
-    have 3 turrets: Blue is sniper turret with increased range but lower rate of
-    fire. Red is a damage over time turret with a slow rate of fire but deals damage
-    multiple times to an enemy with 1 shot. White is a standard tower that has a
-    normal rate of fire and normal damage.
+    Space - Jump
 
-    There are 3 enemy types: A normal
-    attacker with regular speed and damage, a fast unit that moves extremley quickly
-    but deals less damage (this unit is better at dodging turret shots) and a large
-    unit that lumbers its was dealing massive damage if not dealt with.
 
-    when
-    clicking on a turret/tower an upgrade button will appear, clicking that once
-    will place a forcefield, increasing the turrets health, clicking it again will
-    place a second turret gun on top of the tower/turret, increasing its health once
-    again but also increasing its firerate.'
+    Ctrl
+    - Crouch
+
+
+    E - Pick up resources
+
+
+    G - Drop resource at Collection Point
+
+
+    P
+    - Switch between first-person and tower defense mode
+
+
+    Esc - Open Pause Menu
+
+'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
