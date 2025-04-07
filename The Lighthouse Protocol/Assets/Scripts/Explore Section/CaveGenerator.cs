@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CaveGenerator : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class CaveGenerator : MonoBehaviour
 
         EnsureEntrance();
         DrawCave();
+        
     }
 
     void FindOpenSpaces()
@@ -220,6 +222,8 @@ public class CaveGenerator : MonoBehaviour
                         chunkMesh.CombineMeshes(combineInstances.ToArray(), true, true);
 
                         GameObject chunk = new GameObject($"CaveChunk_{cx}_{cy}_{cz}");
+                        chunk.layer = LayerMask.NameToLayer("Obstacle"); 
+
                         chunk.AddComponent<MeshFilter>().mesh = chunkMesh;
                         MeshRenderer renderer = chunk.AddComponent<MeshRenderer>();
 
@@ -229,7 +233,7 @@ public class CaveGenerator : MonoBehaviour
                         else Debug.LogError("CaveMaterial not found!");
 
                         chunk.AddComponent<MeshCollider>();
-                        chunk.isStatic = true; // Enable occlusion culling for chunks
+                        chunk.isStatic = true;
                     }
                 }
             }
@@ -304,9 +308,6 @@ public class CaveGenerator : MonoBehaviour
             Debug.Log($"Spawned resource at {spawnPos}");
         }
     }
-
-
-    
 
 
 }

@@ -6284,7 +6284,7 @@ MonoBehaviour:
   minSpacing: 5
   caveLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 129
   caveBoundsMin: {x: 49, y: 3, z: 49}
   caveBoundsMax: {x: -50, y: 3, z: -50}
 --- !u!4 &1988456930

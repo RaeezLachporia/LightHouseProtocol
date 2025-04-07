@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform eyes; // Assign your "Eyes" child object here
+    public Transform eyes;
     public float roamSpeed = 2f;
     public float chaseSpeed = 5f;
     public float detectionRange = 10f;
-    public float lostSightTime = 3f; // Time before enemy gives up searching
-    public float obstacleAvoidanceRange = 2f; // How far ahead to check for obstacles
-    public float obstacleAvoidanceStrength = 2f; // How strong the avoidance force is
+    public float lostSightTime = 3f;
+    public float obstacleAvoidanceRange = 2f;
+    public float obstacleAvoidanceStrength = 2f;
 
     private Transform player;
     private List<Transform> waypoints;
+    private List<Transform> seenWaypoints = new List<Transform>();
     private Transform currentWaypoint;
-    private int waypointIndex = 0;
     private bool chasing = false;
     private float timeSinceLastSeen = 0f;
-    private Vector3 moveDirection;
 
     void Start()
     {
@@ -31,11 +30,7 @@ public class EnemyAI : MonoBehaviour
             waypoints.Add(obj.transform);
         }
 
-        if (waypoints.Count > 0)
-        {
-            currentWaypoint = waypoints[0];
-            moveDirection = (currentWaypoint.position - transform.position).normalized;
-        }
+        PickNewWaypoint();
     }
 
     void Update()
@@ -66,13 +61,27 @@ public class EnemyAI : MonoBehaviour
         targetDirection = AvoidObstacles(targetDirection);
 
         transform.position += targetDirection * roamSpeed * Time.deltaTime;
-        transform.forward = Vector3.Lerp(transform.forward, targetDirection, 0.1f); // Smooth rotation
+        transform.forward = Vector3.Lerp(transform.forward, targetDirection, 0.1f);
 
         if (Vector3.Distance(transform.position, currentWaypoint.position) < 1f)
         {
-            waypointIndex = (waypointIndex + 1) % waypoints.Count;
-            currentWaypoint = waypoints[waypointIndex];
+            if (!seenWaypoints.Contains(currentWaypoint))
+                seenWaypoints.Add(currentWaypoint);
+
+            PickNewWaypoint();
         }
+    }
+
+    void PickNewWaypoint()
+    {
+        List<Transform> unseen = waypoints.FindAll(wp => !seenWaypoints.Contains(wp));
+        if (unseen.Count == 0)
+        {
+            seenWaypoints.Clear(); // Reset once all are visited
+            unseen = new List<Transform>(waypoints);
+        }
+
+        currentWaypoint = unseen[Random.Range(0, unseen.Count)];
     }
 
     void ChasePlayer()
@@ -92,6 +101,7 @@ public class EnemyAI : MonoBehaviour
             {
                 chasing = false;
                 timeSinceLastSeen = 0f;
+                PickNewWaypoint(); // Resume exploring
             }
         }
     }
@@ -124,12 +134,10 @@ public class EnemyAI : MonoBehaviour
         Vector3 right = transform.right;
         Vector3 left = -transform.right;
 
-        // Check forward
         if (Physics.Raycast(transform.position, direction, out hit, obstacleAvoidanceRange))
         {
-            if (!hit.collider.CompareTag("Player")) // Ignore player
+            if (!hit.collider.CompareTag("Player"))
             {
-                // Avoid by steering right or left
                 if (!Physics.Raycast(transform.position, right, obstacleAvoidanceRange))
                     return (direction + right * obstacleAvoidanceStrength).normalized;
                 else if (!Physics.Raycast(transform.position, left, obstacleAvoidanceRange))
@@ -137,6 +145,6 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
-        return direction; // No obstacles, move normally
+        return direction;
     }
 }
