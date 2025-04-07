@@ -24,6 +24,7 @@ public class LaserBeam : MonoBehaviour
         if (target != null)
         {
             FireLaser();
+            RotateToTarget();
         }
         else
         {
