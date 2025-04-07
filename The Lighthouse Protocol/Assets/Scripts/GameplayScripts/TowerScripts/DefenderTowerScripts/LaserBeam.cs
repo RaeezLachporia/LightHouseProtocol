@@ -14,6 +14,7 @@ public class LaserBeam : MonoBehaviour
     public float TwrHealth = 100;//Health of the tower
     public float currentTwrHealth;
     public Slider TwrHealthSlider;
+    private int upgradeLevel = 0;
     private static List<LaserBeam> upgradableLaserTowers = new List<LaserBeam>();
     public Dictionary<int, Dictionary<string, int>> upgradeCosts = new Dictionary<int, Dictionary<string, int>>();
     // Start is called before the first frame update
@@ -125,6 +126,50 @@ public class LaserBeam : MonoBehaviour
             new WaitForSeconds(10f);
             TowerTakeDamage(10f * Time.deltaTime);
             Debug.Log("Tower is taking damage");
+        }
+    }
+
+    public bool UpgradeTower()
+    {
+        if (!upgradeCosts.ContainsKey(upgradeLevel)) return false;
+        Dictionary<string, int> cost = upgradeCosts[upgradeLevel];
+        //Debug.Log("Current Inventory: " + InventoryManager);
+        if (InventoryManager.HasRequiredResources(cost))
+        {
+            InventoryManager.UseResources(cost);
+            ConfirmUpgrade();
+            InventoryManager.Instance.UpdateInventoryUI();
+            return true;
+        }
+        return false;
+    }
+
+    private void ConfirmUpgrade()
+    {
+        upgradeLevel++;
+        range ++;
+        dps ++;
+        TwrHealth += 100f;
+        Debug.Log("Laser Tower upgraded" + upgradeLevel);
+    }
+    public void UpgradeGatlingTowers()
+    {
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("LaserBeam");
+        foreach (GameObject tower in towers)
+        {
+            TowerShooting towerUpgradeScript = tower.GetComponent<TowerShooting>();
+            if (towerUpgradeScript != null)
+            {
+                if (towerUpgradeScript.UpgradeTower())
+                {
+                    ConfirmUpgrade();
+                    Debug.Log("Upgraded tower " + tower.name);
+                }
+                else
+                {
+                    Debug.Log("not enough resources to upgrade  " + tower.name);
+                }
+            }
         }
     }
 }

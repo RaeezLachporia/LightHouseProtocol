@@ -29,7 +29,7 @@ public class TowerPlacementScripts : MonoBehaviour
     
     void Update()
     {
-        if (isPlacingTower || TowerIndex == -1) return;
+        if (isPlacingTower || TowerIndex == 1) return;
         
             Vector3 worldPos = GetMouseWorldPos();
             Vector3 snapPos = snapToGrid(worldPos);
