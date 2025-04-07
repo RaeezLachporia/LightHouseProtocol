@@ -217,7 +217,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &-8713112750007686866
 MonoBehaviour:
@@ -236,8 +236,14 @@ MonoBehaviour:
   chaseSpeed: 5
   detectionRange: 10
   lostSightTime: 3
-  obstacleAvoidanceRange: 3
-  obstacleAvoidanceStrength: 3
+  obstacleAvoidanceRange: 1
+  obstacleAvoidanceStrength: 1
+  jumpForce: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  viewDistance: 10
+  fieldOfViewAngle: 60
 --- !u!195 &697423905177620499
 NavMeshAgent:
   m_ObjectHideFlags: 0
