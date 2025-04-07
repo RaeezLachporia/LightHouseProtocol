@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c3cd4e2a01a374e86b677de69224ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 100
+  range: 50
   dps: 5
   shootPoint: {fileID: 1694261964614982797}
   laserLine: {fileID: 6656234406521373091}

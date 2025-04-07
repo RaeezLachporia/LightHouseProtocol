@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b5b5efd992b1c94da682607dfba2a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  twrRange: 100
+  twrRange: 50
   fireRate: 2
   TwrHealth: 100
   currentTwrHealth: 0
