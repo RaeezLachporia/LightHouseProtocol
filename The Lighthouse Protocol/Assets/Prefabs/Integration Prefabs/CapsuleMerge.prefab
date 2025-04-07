@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LightHouse: {fileID: 0}
-  detectionRaidus: 5
+  detectionRaidus: 1000
   NavTarget: {fileID: 0}
 --- !u!54 &3263220438565556489
 Rigidbody:

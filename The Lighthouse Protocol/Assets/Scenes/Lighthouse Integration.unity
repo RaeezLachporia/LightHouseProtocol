@@ -2628,7 +2628,7 @@ MonoBehaviour:
   - {fileID: 1388568474}
   - {fileID: 926388293}
   - {fileID: 1091632716}
-  SpawnIntervals: 5
+  SpawnIntervals: 2
 --- !u!114 &734522570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2645,7 +2645,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1388568474}
   - {fileID: 926388293}
-  archerInterval: 3.5
+  archerInterval: 2
 --- !u!1 &762170558
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,7 +5839,7 @@ Transform:
   m_GameObject: {fileID: 1927580838}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 59.97, y: 3.8, z: 152.29}
+  m_LocalPosition: {x: 62.74, y: 3.8, z: 152.29}
   m_LocalScale: {x: 0.70832, y: 0.70832, z: 0.70832}
   m_ConstrainProportionsScale: 0
   m_Children: []
