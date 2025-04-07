@@ -109,4 +109,22 @@ public class LaserBeam : MonoBehaviour
         upgradeCosts[1] = new Dictionary<string, int> { { "Wood", 20 }, { "Metal", 10 } };
         upgradeCosts[2] = new Dictionary<string, int> { { "Wood", 40 }, { "Metal", 20 } };
     }
+    public void TowerTakeDamage(float amount)
+    {
+        currentTwrHealth -= amount;
+        TwrHealthSlider.value = currentTwrHealth;
+        if (currentTwrHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            new WaitForSeconds(10f);
+            TowerTakeDamage(10f * Time.deltaTime);
+            Debug.Log("Tower is taking damage");
+        }
+    }
 }
