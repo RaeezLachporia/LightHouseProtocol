@@ -16,12 +16,15 @@ public class TowerShooting : MonoBehaviour
     private Transform enemyTarget;
     private float cooldown = 0f;
     private int upgradeLevel = 0;
+    private static List<TowerShooting> upgradableTowers = new List<TowerShooting>();
+    private static int UgrdIndex = 0;
     private Dictionary<int, Dictionary<string, int>> upgradeCost = new Dictionary<int, Dictionary<string, int>>();
     void Start()
     {
         currentTwrHealth = TwrHealth; ;
         TwrHealthSlider.maxValue = TwrHealth;
         TwrHealthSlider.value = currentTwrHealth;
+        upgradableTowers.Add(this);
         UpgradeCosts();
     }
 
@@ -120,6 +123,43 @@ public class TowerShooting : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public static void UpgradeOneTower()
+    {
+        if (upgradableTowers.Count==0)
+        {
+            Debug.Log("No towers to Upgrade");
+        }
+        int Looped = 0;
+        bool isUpgraded = false;
+        while (Looped >= upgradableTowers.Count || !isUpgraded)
+        {
+            if (UgrdIndex >= upgradableTowers.Count)
+            {
+                UgrdIndex = 0;
+            }
+
+            TowerShooting towers = upgradableTowers[UgrdIndex];
+            UgrdIndex++;
+            Looped++;
+
+            if (towers != null)
+            {
+                if (towers.UpgradeTower())
+                {
+                    Debug.Log("Tower upgraded " + towers.name);
+                    isUpgraded = true;
+                }
+                else
+                {
+                    Debug.Log("Not Enough Resources for " + towers.name);
+                }
+            }
+        }
+        if (!isUpgraded)
+        {
+            Debug.Log("No towers upgraded");
+        }
     }
     private void ConfirmUpgrade()
     {

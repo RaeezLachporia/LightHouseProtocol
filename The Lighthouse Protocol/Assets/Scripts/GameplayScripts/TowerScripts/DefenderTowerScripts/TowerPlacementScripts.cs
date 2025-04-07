@@ -13,7 +13,8 @@ public class TowerPlacementScripts : MonoBehaviour
     private GameObject currentGhostTower;
     private Camera cam;
     private bool isPlacingTower = false;
-    private int TowerIndex = -1;
+    private int TowerIndex = 0;
+    //private int IndexForUpgrades = -1;
     private Dictionary<int, GameObject> placedTowers = new Dictionary<int, GameObject>();
     private int towerID = 0;
     public LaserBeam laserbeam = new LaserBeam();
