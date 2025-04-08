@@ -16,9 +16,9 @@ public class InventoryManager : MonoBehaviour
     {
         Instance = this;
         invetoryCnavas.active = false;
-        inventoryResources["Wood"] = 50;
-        inventoryResources["Metal"] = 50;
-        inventoryResources["Platic"] = 50;
+        inventoryResources["Wood"] = 100;
+        inventoryResources["Metal"] = 100;
+        inventoryResources["Platic"] = 100;
         LoadCollectedResources();
         UpdateInventoryUI();
     }
