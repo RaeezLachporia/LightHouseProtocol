@@ -51,12 +51,7 @@ public class DomeControl : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            EnemyHealth enemyHP = other.GetComponent<EnemyHealth>();
-            if (enemyHP != null)
-            {
-                Debug.Log("Got enemy hp");
-                enemyHP.TakeDamage(DomeDamge);
-            }
+            
             if (Energy >0)
             {
                 Energy -= Shrink * Time.deltaTime;
