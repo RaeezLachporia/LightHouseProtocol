@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class SceneProgressor2 : MonoBehaviour
 {
 
+    public ModeSwitcher modeSwitcher;
+
     private Camera playerCamera;
 
     public string progressObjectTag = "Progress"; // Tag assigned to the "Progress" GameObject
@@ -23,7 +25,7 @@ public class SceneProgressor2 : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Progress"))
                 {
-                    SceneManager.LoadScene(1); // Ensure this only runs for the correct object
+                    modeSwitcher.ToggleMode(); // Simulates pressing P
                 }
             }
         }
@@ -41,4 +43,7 @@ public class SceneProgressor2 : MonoBehaviour
             }
         }
     }
+
+
+
 }

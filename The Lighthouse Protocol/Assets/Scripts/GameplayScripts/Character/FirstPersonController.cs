@@ -131,11 +131,27 @@ public class FirstPersonController : MonoBehaviour
 
         HandleCrouch();
 
+        //if (Input.GetKeyDown(KeyCode.E))
+        //    PickupResource("Materials"); // Example pickup
+
         if (Input.GetKeyDown(KeyCode.E))
-            PickupResource("Metal"); // Example pickup
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, 3f))
+            {
+                if (hit.collider.CompareTag("Pickup")) // Make sure the object has this tag
+                {
+                    string resourceName = hit.collider.gameObject.name; // Or use a custom component for better naming
+                    PickupResource(resourceName);
+                    Destroy(hit.collider.gameObject); // Optional: remove the resource from scene
+                }
+            }
+        }
+
+        ///////////////////////////////
 
         if (Input.GetKeyDown(KeyCode.G))
-            DropResource("Metal"); // Example drop
+            DropResource("Materials"); // Example drop
 
         UpdateCollectedResourcesUI();
     }
@@ -210,6 +226,7 @@ public class FirstPersonController : MonoBehaviour
         heldResources[resourceName]++;
 
         UpdateHoldingResourcesUI();
+        //return true;
     }
 
     // NEW: Drop logic
@@ -231,4 +248,25 @@ public class FirstPersonController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
             PauseMenu.SetActive(true);
     }
+
+    public void TakeDamage(float amount)
+    {
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (healthBar != null)
+            healthBar.value = currentHealth;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Player died.");
+        
+    }
+
 }
