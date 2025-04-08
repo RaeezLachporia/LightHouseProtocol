@@ -60,11 +60,11 @@ public class FirstPersonController : MonoBehaviour
         if (collectedResourcesText == null)
             collectedResourcesText = GameObject.Find("CollectedResourcesText")?.GetComponent<TextMeshProUGUI>();
 
-        if (holdingResourcesText == null) // NEW: Assign Holding UI
+        if (holdingResourcesText == null)
             holdingResourcesText = GameObject.Find("HoldingResourcesText")?.GetComponent<TextMeshProUGUI>();
 
         UpdateCollectedResourcesUI();
-        UpdateHoldingResourcesUI(); // NEW
+        UpdateHoldingResourcesUI();
 
         if (staminaBar != null)
         {
@@ -131,24 +131,20 @@ public class FirstPersonController : MonoBehaviour
 
         HandleCrouch();
 
-        //if (Input.GetKeyDown(KeyCode.E))
-        //    PickupResource("Materials"); // Example pickup
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             RaycastHit hit;
             if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, 3f))
             {
-                if (hit.collider.CompareTag("Pickup")) // Make sure the object has this tag
+                if (hit.collider.CompareTag("mats"))
                 {
-                    string resourceName = hit.collider.gameObject.name; // Or use a custom component for better naming
+                    string rawName = hit.collider.gameObject.name;
+                    string resourceName = CleanResourceName(rawName); // Clean it before storing
                     PickupResource(resourceName);
-                    Destroy(hit.collider.gameObject); // Optional: remove the resource from scene
+                    Destroy(hit.collider.gameObject);
                 }
             }
         }
-
-        ///////////////////////////////
 
         if (Input.GetKeyDown(KeyCode.G))
             DropResource("Materials"); // Example drop
@@ -189,7 +185,6 @@ public class FirstPersonController : MonoBehaviour
             fillImage.color = color;
     }
 
-    // Update the UI for collected resources
     public void UpdateCollectedResourcesUI()
     {
         if (collectedResourcesText == null) return;
@@ -201,7 +196,6 @@ public class FirstPersonController : MonoBehaviour
             collectedResourcesText.text += $"{resource.Key}: {resource.Value}\n";
     }
 
-    // NEW: Update UI for holding resources
     void UpdateHoldingResourcesUI()
     {
         if (holdingResourcesText == null) return;
@@ -218,7 +212,6 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    // NEW: Pickup logic
     void PickupResource(string resourceName)
     {
         if (!heldResources.ContainsKey(resourceName))
@@ -226,10 +219,12 @@ public class FirstPersonController : MonoBehaviour
         heldResources[resourceName]++;
 
         UpdateHoldingResourcesUI();
-        //return true;
+
+        Debug.Log("Held Resources:");
+        foreach (var kvp in heldResources)
+            Debug.Log($"{kvp.Key}: {kvp.Value}");
     }
 
-    // NEW: Drop logic
     void DropResource(string resourceName)
     {
         if (heldResources.ContainsKey(resourceName) && heldResources[resourceName] > 0)
@@ -266,7 +261,11 @@ public class FirstPersonController : MonoBehaviour
     void Die()
     {
         Debug.Log("Player died.");
-        
     }
 
+    // Helper function to clean resource names
+    string CleanResourceName(string rawName)
+    {
+        return rawName.Split('(')[0].Trim(); // Removes (Clone) or (1)
+    }
 }

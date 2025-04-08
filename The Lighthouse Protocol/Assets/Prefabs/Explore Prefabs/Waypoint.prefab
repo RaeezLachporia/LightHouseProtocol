@@ -99,9 +99,9 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.2745439
-  m_Center: {x: 0, y: -0.037250638, z: -0.053416133}
+  m_Radius: 1.9579029
+  m_Center: {x: -0.0013427734, y: 0.20406985, z: -0.08981967}
