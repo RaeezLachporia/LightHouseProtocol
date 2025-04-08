@@ -12,6 +12,7 @@ public class ModeSwitcher : MonoBehaviour
 
     void Start()
     {
+        FirstPersonUI.SetActive(false);
         // Find the UI System once and store it
         uiSystem = GameObject.Find("UISystem");
 
@@ -43,7 +44,7 @@ public class ModeSwitcher : MonoBehaviour
         }
     }
 
-    void ToggleMode()
+    public void ToggleMode()
     {
         isInFirstPerson = !isInFirstPerson; // Properly toggle the state
 

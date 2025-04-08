@@ -6,6 +6,9 @@ public class InventorySystem : MonoBehaviour
 {
     private Camera playerCamera;
 
+
+    
+
     public float pickupRange = 3f;
     public Transform dropPoint;
 
@@ -74,6 +77,8 @@ public class InventorySystem : MonoBehaviour
 
                 Debug.Log($"Picked up {itemName}. You now have {inventory[itemName]}.");
                 Destroy(hit.collider.gameObject);
+
+                
             }
         }
     }
@@ -88,6 +93,8 @@ public class InventorySystem : MonoBehaviour
         {
             Vector3 dropPosition = playerCamera.transform.position + playerCamera.transform.forward * 1.5f;
             Instantiate(itemPrefab, dropPosition, Quaternion.identity);
+
+            
 
             Debug.Log($"Dropped {itemToDrop}. Remaining: {inventory[itemToDrop] - 1}");
         }

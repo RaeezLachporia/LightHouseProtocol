@@ -850,6 +850,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 612380534943970997, guid: 7221b67e84d562645b1c2715aa4c5eb9, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 466692053}
+    - target: {fileID: 612380534943970997, guid: 7221b67e84d562645b1c2715aa4c5eb9, type: 3}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 1521107545}
+    - target: {fileID: 612380534943970997, guid: 7221b67e84d562645b1c2715aa4c5eb9, type: 3}
+      propertyPath: holdingResourcesText
+      value: 
+      objectReference: {fileID: 1823258264}
+    - target: {fileID: 612380534943970997, guid: 7221b67e84d562645b1c2715aa4c5eb9, type: 3}
+      propertyPath: collectedResourcesText
+      value: 
+      objectReference: {fileID: 475007305}
     - target: {fileID: 2381091281900113440, guid: 7221b67e84d562645b1c2715aa4c5eb9, type: 3}
       propertyPath: m_ClearFlags
       value: 1
@@ -1534,10 +1550,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1560,7 +1576,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2952,6 +2968,10 @@ PrefabInstance:
     - target: {fileID: 1266130540892011330, guid: 7df54dbef756bde46be6b87767c24723, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880832047449361790, guid: 7df54dbef756bde46be6b87767c24723, type: 3}
+      propertyPath: modeSwitcher
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2954421480950662470, guid: 7df54dbef756bde46be6b87767c24723, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5071,7 +5091,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.7132075, g: 0.67275894, b: 0.1870487, a: 1}
     m_HighlightedColor: {r: 1, g: 0.8388692, b: 0, a: 1}
     m_PressedColor: {r: 0.9547169, g: 0.85743475, b: 0.14230676, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5094,7 +5114,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

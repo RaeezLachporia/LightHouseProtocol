@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneProgressor : MonoBehaviour
 {
+    public ModeSwitcher modeSwitcher;
 
     private Camera playerCamera;
 
@@ -23,7 +24,7 @@ public class SceneProgressor : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Progress"))
                 {
-                    SceneManager.LoadScene(1); // Ensure this only runs for the correct object
+                    modeSwitcher.ToggleMode(); // Simulates pressing P
                 }
             }
         }

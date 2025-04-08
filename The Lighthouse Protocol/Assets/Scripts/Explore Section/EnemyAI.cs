@@ -19,6 +19,13 @@ public class EnemyAI : MonoBehaviour
     private bool chasing = false;
     private float timeSinceLastSeen = 0f;
 
+
+    public float attackRange = 2f;
+    public float damage = 10f;
+    public float attackCooldown = 1.5f;
+    private float lastAttackTime = 0f;
+
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -88,11 +95,28 @@ public class EnemyAI : MonoBehaviour
     {
         if (player == null) return;
 
-        Vector3 targetDirection = (player.position - transform.position).normalized;
-        targetDirection = AvoidObstacles(targetDirection);
+        float distance = Vector3.Distance(transform.position, player.position);
 
-        transform.position += targetDirection * chaseSpeed * Time.deltaTime;
-        transform.forward = Vector3.Lerp(transform.forward, targetDirection, 0.1f);
+        if (distance <= attackRange)
+        {
+            if (Time.time >= lastAttackTime + attackCooldown)
+            {
+                FirstPersonController playerController = player.GetComponent<FirstPersonController>();
+                if (playerController != null)
+                {
+                    playerController.TakeDamage(damage);
+                    lastAttackTime = Time.time;
+                }
+            }
+        }
+        else
+        {
+            Vector3 targetDirection = (player.position - transform.position).normalized;
+            targetDirection = AvoidObstacles(targetDirection);
+
+            transform.position += targetDirection * chaseSpeed * Time.deltaTime;
+            transform.forward = Vector3.Lerp(transform.forward, targetDirection, 0.1f);
+        }
 
         if (!CanSeePlayer())
         {
