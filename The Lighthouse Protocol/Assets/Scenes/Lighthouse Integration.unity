@@ -773,75 +773,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62018224}
   m_CullTransparentMesh: 1
---- !u!1001 &150621225
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 371122476713373738, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 371122476713373738, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674206188490373358, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 84.9713
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674206188490373358, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 9.320801
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674206188490373358, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 128.84085
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674206188490373358, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674206188490373358, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674206188490373358, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674206188490373358, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674206188490373358, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674206188490373358, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674206188490373358, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7055948905079558864, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: rotationSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078377775320136400, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
-      propertyPath: m_Name
-      value: LaserTowerMerge 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9de0b68b10b974d4ca98e4e88288c646, type: 3}
 --- !u!1001 &185828250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6518,6 +6449,7 @@ GameObject:
   - component: {fileID: 1993140886}
   - component: {fileID: 1993140885}
   - component: {fileID: 1993140884}
+  - component: {fileID: 1993140888}
   m_Layer: 5
   m_Name: UpgradeMenu
   m_TagString: Untagged
@@ -6621,6 +6553,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993140882}
   m_CullTransparentMesh: 1
+--- !u!114 &1993140888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993140882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c3cd4e2a01a374e86b677de69224ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 10
+  dps: 5
+  shootPoint: {fileID: 0}
+  laserLine: {fileID: 0}
+  rotationSpeed: 5
+  TwrHealth: 100
+  currentTwrHealth: 0
+  TwrHealthSlider: {fileID: 0}
 --- !u!1 &2013014124
 GameObject:
   m_ObjectHideFlags: 0
@@ -7130,7 +7082,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2091391405}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1993140888}
+        m_TargetAssemblyTypeName: LaserBeam, Assembly-CSharp
+        m_MethodName: UpgradeOneTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2091391405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7337,4 +7301,3 @@ SceneRoots:
   - {fileID: 47278077}
   - {fileID: 1791356583}
   - {fileID: 1487986499}
-  - {fileID: 150621225}

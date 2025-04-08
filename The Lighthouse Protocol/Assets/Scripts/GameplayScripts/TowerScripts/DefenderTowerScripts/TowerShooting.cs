@@ -132,7 +132,7 @@ public class TowerShooting : MonoBehaviour
         }
         int Looped = 0;
         bool isUpgraded = false;
-        while (Looped >= upgradableTowers.Count || !isUpgraded)
+        while (Looped < upgradableTowers.Count && !isUpgraded)
         {
             if (UgrdIndex >= upgradableTowers.Count)
             {
@@ -143,8 +143,7 @@ public class TowerShooting : MonoBehaviour
             UgrdIndex++;
             Looped++;
 
-            if (towers != null)
-            {
+            
                 if (towers.UpgradeTower())
                 {
                     Debug.Log("Tower upgraded " + towers.name);
@@ -154,7 +153,7 @@ public class TowerShooting : MonoBehaviour
                 {
                     Debug.Log("Not Enough Resources for " + towers.name);
                 }
-            }
+            
         }
         if (!isUpgraded)
         {
@@ -167,6 +166,9 @@ public class TowerShooting : MonoBehaviour
         twrRange += 20f;
         fireRate += 20f;
         TwrHealth += 100f;
+        currentTwrHealth = TwrHealth;
+        TwrHealthSlider.maxValue = TwrHealth;
+        TwrHealthSlider.value = currentTwrHealth;
         Debug.Log("Tower upgrades" + upgradeLevel);
     }
 

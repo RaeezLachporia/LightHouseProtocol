@@ -16,6 +16,7 @@ public class LaserBeam : MonoBehaviour
     public Slider TwrHealthSlider;
     private int upgradeLevel = 0;
     private static List<LaserBeam> upgradableLaserTowers = new List<LaserBeam>();
+    private static int UgrdIndex = 0;
     public Dictionary<int, Dictionary<string, int>> upgradeCosts = new Dictionary<int, Dictionary<string, int>>();
     // Start is called before the first frame update
     void Start()
@@ -51,7 +52,7 @@ public class LaserBeam : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy <closestTarget)
+            if (distanceToEnemy < closestTarget)
             {
                 closestTarget = distanceToEnemy;
                 closestEnemy = enemy.transform;
@@ -76,7 +77,7 @@ public class LaserBeam : MonoBehaviour
         {
             enemyHealth.TakeDamage(dps * Time.deltaTime);
         }
-        
+
     }
 
     void DeactivateLaser()
@@ -147,9 +148,12 @@ public class LaserBeam : MonoBehaviour
     private void ConfirmUpgrade()
     {
         upgradeLevel++;
-        range ++;
-        dps ++;
+        range+=10;
+        dps+=20;
         TwrHealth += 100f;
+        currentTwrHealth = TwrHealth; ;
+        TwrHealthSlider.maxValue = TwrHealth;
+        TwrHealthSlider.value = currentTwrHealth;
         Debug.Log("Laser Tower upgraded" + upgradeLevel);
     }
     public void UpgradeGatlingTowers()
@@ -170,6 +174,38 @@ public class LaserBeam : MonoBehaviour
                     Debug.Log("not enough resources to upgrade  " + tower.name);
                 }
             }
+        }
+    }
+    public static void UpgradeOneTower()
+    {
+        if (upgradableLaserTowers.Count == 0)
+        {
+            Debug.Log("No towers to Upgrade");
+        }
+        int Looped = 0;
+        bool isUpgraded = false;
+        while (Looped < upgradableLaserTowers.Count && !isUpgraded)
+        {
+            if (UgrdIndex >= upgradableLaserTowers.Count)
+            {
+                UgrdIndex = 0;
+            }
+
+            LaserBeam towers = upgradableLaserTowers[UgrdIndex];
+            UgrdIndex++;
+            Looped++;
+
+            
+                if (towers.UpgradeTower())
+                {
+                    Debug.Log("Tower upgraded " + towers.name);
+                    isUpgraded = true;
+                }
+                else
+                {
+                    Debug.Log("Not Enough Resources for " + towers.name);
+                }
+            
         }
     }
 }
