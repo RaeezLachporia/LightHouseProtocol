@@ -28,7 +28,7 @@ public class DomeControl : MonoBehaviour
         {
             float targetDomeSize = Mathf.Lerp(MinRadius, MaxRadius, Energy / 100f);
             domePos.localScale = Vector3.one * targetDomeSize;
-            Debug.Log("Dome size: " + domePos.localScale);
+            //Debug.Log("Dome size: " + domePos.localScale);
         }
         else
         {
