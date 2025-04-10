@@ -50,35 +50,6 @@ public class TowerPlacementScripts : MonoBehaviour
             PlaceTowers(snapPos);
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log(" mouse is being pressed");
-            //SelctedTowerForUpgrade();
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                Debug.Log("Click on UI detected! Raycast ignored.");
-                return; // Stop here if clicking on UI
-            }
-            Ray raycasting = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitting;
-
-            int layerMask = ~(1 << LayerMask.NameToLayer("UI")); // Ignore UI layer
-
-            if (Physics.Raycast(ray, out hitting, Mathf.Infinity, layerMask))
-            {
-                Debug.Log("Hit Object: " + hitting.collider.name);
-            }
-            else
-            {
-                Debug.Log("Raycast didn't hit anything.");
-            }
-        }
-
-        
-        
     }
 
     private Vector3 GetMouseWorldPos()
