@@ -12,6 +12,7 @@ TagManager:
   - mats
   - Waypoint
   - Progress
+  - Dome
   layers:
   - Default
   - TransparentFX

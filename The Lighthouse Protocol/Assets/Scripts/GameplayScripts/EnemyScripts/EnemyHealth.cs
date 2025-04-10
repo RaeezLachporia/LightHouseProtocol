@@ -9,6 +9,8 @@ public class EnemyHealth : MonoBehaviour
     public float Maxhealth = 50f;
     public float currentHealth;
     public Slider HealthSlider;
+    public DomeControl domeDamage;
+    public int moneyGained = 50;
     void Start()
     {
         currentHealth = Maxhealth;
@@ -28,7 +30,22 @@ public class EnemyHealth : MonoBehaviour
         HealthSlider.value = currentHealth;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            EnemyDead();
         }
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Dome"))
+        {
+            TakeDamage(domeDamage.DomeDamge);
+            Debug.Log("Enemy is taking damage");
+        }
+        
+    }
+    public void EnemyDead()
+    {
+        GameManager.Instance.GainMoney(moneyGained);
+        Destroy(gameObject);
     }
 }
