@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class FirstPersonController : MonoBehaviour
 {
@@ -260,7 +261,10 @@ public class FirstPersonController : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Player died.");
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene(5);
     }
 
     // Helper function to clean resource names
