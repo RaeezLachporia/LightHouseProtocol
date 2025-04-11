@@ -4544,9 +4544,10 @@ GameObject:
   - component: {fileID: 1250316995}
   - component: {fileID: 1250316994}
   - component: {fileID: 1250316993}
+  - component: {fileID: 1250316997}
   m_Layer: 0
   m_Name: LightHouse
-  m_TagString: Untagged
+  m_TagString: LightHouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
@@ -4570,8 +4571,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.8290566, y: 1, z: 2.0457}
+  m_Center: {x: -0.047085192, y: 0, z: 0.049064636}
 --- !u!23 &1250316994
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4631,13 +4632,29 @@ Transform:
   m_GameObject: {fileID: 1250316991}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 59.4, y: 11.1, z: 152.3}
+  m_LocalPosition: {x: 59.4, y: 12, z: 152.3}
   m_LocalScale: {x: 5, y: 20, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 562547754}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1250316997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250316991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c3a3ab74c785c4fa662a44062ee9a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetectionRing: 50
+  TwrHealth: 100
+  currentTwrHealth: 0
+  TwrHealthSlider: {fileID: 729417866}
 --- !u!1 &1251335971
 GameObject:
   m_ObjectHideFlags: 0
@@ -6188,7 +6205,7 @@ GameObject:
   - component: {fileID: 1927580840}
   m_Layer: 0
   m_Name: TargetDestination
-  m_TagString: LightHouse
+  m_TagString: LightHouseNav
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6202,7 +6219,7 @@ Transform:
   m_GameObject: {fileID: 1927580838}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 62.74, y: 3.8, z: 152.29}
+  m_LocalPosition: {x: 63.5, y: 2.58, z: 152.29}
   m_LocalScale: {x: 0.70832, y: 0.70832, z: 0.70832}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6220,7 +6237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c3a3ab74c785c4fa662a44062ee9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectionRing: 9.6
+  DetectionRing: 8.2
+  TwrHealth: 100
+  currentTwrHealth: 0
+  TwrHealthSlider: {fileID: 729417866}
 --- !u!1001 &1930017497
 PrefabInstance:
   m_ObjectHideFlags: 0

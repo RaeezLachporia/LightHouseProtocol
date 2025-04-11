@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        LightHouse = GameObject.FindWithTag("LightHouse").transform;
+        LightHouse = GameObject.FindWithTag("LightHouseNav").transform;
 
         UpdateTarget();
     }
@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
-            if (col.CompareTag("Tower") || col.CompareTag("LaserBeam") || col.CompareTag("LightHouse")) 
+            if (col.CompareTag("Tower") || col.CompareTag("LaserBeam") || col.CompareTag("LightHouseNav")) 
             {
                 float distanceToTarget = Vector3.Distance(transform.position, col.transform.position);
                 if (distanceToTarget<closeDistance)
