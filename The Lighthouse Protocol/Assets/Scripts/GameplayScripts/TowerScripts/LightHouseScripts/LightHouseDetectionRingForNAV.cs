@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class LightHouseDetectionRingForNAV : MonoBehaviour
 {
     public float DetectionRing = 50f;
@@ -35,7 +36,7 @@ public class LightHouseDetectionRingForNAV : MonoBehaviour
             if (other.CompareTag("Enemy"))
             {
                 new WaitForSeconds(10f);
-                MainTowerTakeDamage(20f * Time.deltaTime);
+                MainTowerTakeDamage(10f * Time.deltaTime);
                 Debug.Log("The LightHouse is taking damage");
             }
        
@@ -47,6 +48,9 @@ public class LightHouseDetectionRingForNAV : MonoBehaviour
         if (currentTwrHealth <= 0)
         {
             Destroy(go);
+            new WaitForSeconds(5f);
+            Time.timeScale = 0;
+            SceneManager.LoadScene(5);
         }
     }
 }
